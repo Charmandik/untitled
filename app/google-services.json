@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "554386126",
+    "firebase_url": "https://purewave-bec6e.firebaseio.com",
+    "project_id": "purewave-bec6e",
+    "storage_bucket": "purewave-bec6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554386126:android:95737cc4424a8a3a6fc69f",
+        "android_client_info": {
+          "package_name": "ru.bikbulatov.pureWave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554386126-qipcv3glg2gu59i8j7pjr99tha7a4b6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3xV3vg2nLiGREusCnc18Mm72WdNAccy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554386126-qipcv3glg2gu59i8j7pjr99tha7a4b6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

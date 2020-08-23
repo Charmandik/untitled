@@ -1,4 +1,4 @@
-package ru.bikbulatov.untitled
+package ru.bikbulatov.pureWave
 
 import org.junit.Test
 
