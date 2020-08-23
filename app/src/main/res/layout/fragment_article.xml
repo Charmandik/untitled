@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,7 +13,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_menu"
@@ -22,38 +20,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvArticleTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Releases"
+        android:layout_marginTop="16dp"
+        android:text="My life with jesus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivBackBtn" />
 
-    <!--Здесь будет скролл между изображениями, нужно будет посмотреть нормальный контейнер для этого, может тот же ViewPager-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRecommend"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        tools:itemCount="2" />
-
     <TextView
-        android:id="@+id/tvRecommendTitle"
+        android:id="@+id/tvArticleBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Recommend"
+        android:layout_marginTop="16dp"
+        android:text="some text here"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvRecommend" />
-
-    <TextView
-        android:id="@+id/tvTempRec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RECOMMENDED AUTHOR"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvRecommendTitle" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tvArticleTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
