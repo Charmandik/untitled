@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="ru.bikbulatov.pureWave.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/flContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvMain"
         android:layout_width="match_parent"
