@@ -2,7 +2,7 @@ package ru.bikbulatov.pureWave
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.bikbulatov.pureWave.articles.FragmentArticle
+import ru.bikbulatov.pureWave.articles.ui.FragmentArticle
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

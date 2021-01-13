@@ -12,6 +12,6 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/navigation_article"
-        android:name="ru.bikbulatov.pureWave.articles.FragmentArticle"
+        android:name="ru.bikbulatov.pureWave.articles.ui.FragmentArticle"
         android:label="FragmentArticle" />
 </navigation>

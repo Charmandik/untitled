@@ -1,4 +1,4 @@
-package ru.bikbulatov.pureWave.articles
+package ru.bikbulatov.pureWave.articles.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ru.bikbulatov.pureWave.MainViewModel
 import ru.bikbulatov.pureWave.databinding.FragmentArticleBinding
 
 class FragmentArticle : Fragment() {
     private lateinit var binding: FragmentArticleBinding
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: ArticlesVM
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,7 +18,12 @@ class FragmentArticle : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentArticleBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(ArticlesVM::class.java)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getArticles()
     }
 }
