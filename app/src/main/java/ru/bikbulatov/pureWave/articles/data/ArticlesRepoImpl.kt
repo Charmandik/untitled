@@ -1,6 +1,8 @@
 package ru.bikbulatov.pureWave.articles.data
 
-class ArticlesRepoImpl : ArticlesRepo {
+import ru.bikbulatov.pureWave.authors.data.AuthorsRepo
+
+class ArticlesRepoImpl : AuthorsRepo {
     override suspend fun getArticles() {
         TODO("Not yet implemented")
     }
