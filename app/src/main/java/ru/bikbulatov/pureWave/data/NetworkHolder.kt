@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object NetworkHolder {
-    const val baseurl = "https://api.ufanet.ru/"
+    const val baseurl = "https://purewave.ru/api/v1/"
     var retrofitClient: Retrofit
     var authenticatorRetrofitClient: Retrofit
 
