@@ -13,7 +13,7 @@ object NetworkHolder {
     var retrofitClient: Retrofit
     var authenticatorRetrofitClient: Retrofit
 
-    //    var apiRepository: ApiRepository
+        var apiRepository: ApiRepository
     var httpClient: OkHttpClient
 
     init {
@@ -45,18 +45,11 @@ object NetworkHolder {
             .client(httpClient)
             .build()
 
-//        apiRepository = ApiRepository(
-//            retrofitClient.create(ICommonApi::class.java),
-//            retrofitClient.create(IAuthApi::class.java),
-//            retrofitClient.create(ISimCardApi::class.java),
-//            retrofitClient.create(IFirebaseApi::class.java),
-//            retrofitClient.create(IDocumentApi::class.java),
-//            retrofitClient.create(IChatApi::class.java),
-//            retrofitClient.create(IPaymentApi::class.java),
-//            retrofitClient.create(IOperationsApi::class.java),
-//            retrofitClient.create(ITariffApi::class.java),
-//            retrofitClient.create(INpsApi::class.java),
-//            retrofitClient.create(CerberCryptApi::class.java)
-//        )
+        apiRepository = ApiRepository(
+            retrofitClient.create(ArticlesApi::class.java),
+            retrofitClient.create(AuthorsApi::class.java),
+            retrofitClient.create(PodcastsApi::class.java),
+            retrofitClient.create(VacanciesApi::class.java)
+        )
     }
 }
