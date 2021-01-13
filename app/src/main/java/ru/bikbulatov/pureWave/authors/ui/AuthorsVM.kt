@@ -8,13 +8,13 @@ import kotlinx.coroutines.launch
 import ru.bikbulatov.pureWave.authors.data.AuthorsRepo
 
 class AuthorsVM @ViewModelInject constructor(val authorsRepo: AuthorsRepo) : ViewModel() {
-    fun getArticles() {
+    fun getAuthors() {
         CoroutineScope(Dispatchers.IO).launch {
             authorsRepo.getAuthors()
         }
     }
 
-    fun getArticle(id: Int) {
+    fun getAuthor(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             authorsRepo.getAuthor(id)
         }
