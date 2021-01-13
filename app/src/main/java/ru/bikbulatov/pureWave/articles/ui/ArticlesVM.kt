@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.bikbulatov.pureWave.authors.data.AuthorsRepo
+import ru.bikbulatov.pureWave.articles.data.ArticlesRepo
 
-class ArticlesVM @ViewModelInject constructor(val articlesRepo: AuthorsRepo) : ViewModel() {
+class ArticlesVM @ViewModelInject constructor(val articlesRepo: ArticlesRepo) : ViewModel() {
     fun getArticles() {
         CoroutineScope(Dispatchers.IO).launch {
             articlesRepo.getArticles()

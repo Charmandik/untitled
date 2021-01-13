@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.databinding.FragmentArticleBinding
 
+@AndroidEntryPoint
 class FragmentArticle : Fragment() {
     private lateinit var binding: FragmentArticleBinding
     private lateinit var viewModel: ArticlesVM
