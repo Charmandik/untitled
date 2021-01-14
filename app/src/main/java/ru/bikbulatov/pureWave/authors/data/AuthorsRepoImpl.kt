@@ -1,14 +1,17 @@
 package ru.bikbulatov.pureWave.authors.data
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.data.NetworkHolder
 
 
 class AuthorsRepoImpl : AuthorsRepo {
-    override suspend fun getAuthors() {
+    override suspend fun getAuthors(authors: MutableLiveData<List<AuthorModel>>) {
         try {
             val response = NetworkHolder.apiRepository.authorsApi.getAuthors()
-            response?.let {
+            response.let {
+                authors.postValue(response)
                 Log.d("test123", "test222")
             }
         } catch (e: Exception) {
@@ -16,10 +19,11 @@ class AuthorsRepoImpl : AuthorsRepo {
         }
     }
 
-    override suspend fun getAuthor(id: Int) {
+    override suspend fun getAuthor(id: Int, author: MutableLiveData<AuthorModel>) {
         try {
             val response = NetworkHolder.apiRepository.authorsApi.getAuthor(id)
-            response?.let {
+            response.let {
+                author.postValue(response)
                 Log.d("test123", "test222")
             }
         } catch (e: Exception) {
