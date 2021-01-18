@@ -5,5 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="textTitle">#FFFFFF</color>
     <color name="background_articles">#00bbff</color>
+    <color name="royal_blue">#685CFE</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
 </resources>
