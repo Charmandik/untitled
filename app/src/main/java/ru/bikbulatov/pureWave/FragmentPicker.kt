@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ru.bikbulatov.pureWave.databinding.FragmentAuthorsBinding
 import ru.bikbulatov.pureWave.databinding.FragmentPickerBinding
 
 class FragmentPicker : Fragment() {

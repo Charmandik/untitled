@@ -13,7 +13,7 @@ object NetworkHolder {
     var retrofitClient: Retrofit
     var authenticatorRetrofitClient: Retrofit
 
-        var apiRepository: ApiRepository
+    var apiRepository: ApiRepository
     var httpClient: OkHttpClient
 
     init {

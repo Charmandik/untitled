@@ -1,6 +1,5 @@
 package ru.bikbulatov.pureWave.articles.ui
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.articles.models.ArticleModel
-import ru.bikbulatov.pureWave.databinding.FragmentArticlesListBinding
 
 class ArticlesAdapter(val articles: List<ArticleModel>) :
     RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {

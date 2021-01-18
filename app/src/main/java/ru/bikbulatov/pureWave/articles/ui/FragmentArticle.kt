@@ -29,6 +29,7 @@ class FragmentArticle : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getArticles()
+        observeOnArticles()
     }
 
     fun observeOnArticles() {
@@ -36,7 +37,7 @@ class FragmentArticle : Fragment() {
             it?.let {
                 binding.rvArticles.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvArticles.adapter = ArticlesAdapter()
+                binding.rvArticles.adapter = ArticlesAdapter(it)
             }
         })
     }
