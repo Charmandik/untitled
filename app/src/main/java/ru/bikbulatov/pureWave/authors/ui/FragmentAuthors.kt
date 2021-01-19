@@ -37,7 +37,7 @@ class FragmentAuthors : Fragment() {
             it?.let {
                 binding.rvAuthors.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvAuthors.adapter = AuthorsAdapter(it)
+                binding.rvAuthors.adapter = AuthorsAdapter(it, viewModel)
             }
         })
     }

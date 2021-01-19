@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/navigation_article"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_open_book"
         android:title="article" />
 
     <item
