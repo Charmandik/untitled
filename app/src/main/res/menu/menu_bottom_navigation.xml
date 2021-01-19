@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_media"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="media" />
+        android:icon="@drawable/ic_home"
+        android:title="" />
 
     <item
         android:id="@+id/navigation_music"
         android:icon="@drawable/ic_note"
-        android:title="music" />
+        android:title="" />
 
     <item
         android:id="@+id/navigation_main"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="main" />
+        android:icon="@drawable/ic_target"
+        android:title="" />
 
     <item
         android:id="@+id/navigation_article"
         android:icon="@drawable/ic_open_book"
-        android:title="article" />
+        android:title="" />
 
     <item
         android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="search" />
+        android:icon="@drawable/ic_search"
+        android:title="" />
 </menu>
