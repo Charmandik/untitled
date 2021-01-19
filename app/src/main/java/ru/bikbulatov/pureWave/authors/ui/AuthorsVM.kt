@@ -10,10 +10,10 @@ import ru.bikbulatov.pureWave.authors.data.AuthorsRepo
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 
 class AuthorsVM @ViewModelInject constructor(val authorsRepo: AuthorsRepo) : ViewModel() {
-    val authors: MutableLiveData<List<AuthorModel>> = MutableLiveData()
+    val authorsList: MutableLiveData<List<AuthorModel>> = MutableLiveData()
     fun getAuthors() {
         CoroutineScope(Dispatchers.IO).launch {
-            authorsRepo.getAuthors(authors)
+            authorsRepo.getAuthors(authorsList)
         }
     }
 

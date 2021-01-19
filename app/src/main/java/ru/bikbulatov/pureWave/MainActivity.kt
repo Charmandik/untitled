@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticle
+import ru.bikbulatov.pureWave.authors.ui.FragmentAuthors
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_media -> {
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(binding.flContainer.id, FragmentPicker())
+                        .replace(binding.flContainer.id, FragmentAuthors())
                         .commit()
                 }
                 R.id.navigation_music -> {
