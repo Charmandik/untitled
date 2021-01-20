@@ -49,7 +49,7 @@ object NetworkHolder {
             retrofitClient.create(ArticlesApi::class.java),
             retrofitClient.create(AuthorsApi::class.java),
             retrofitClient.create(PodcastsApi::class.java),
-            retrofitClient.create(VacanciesApi::class.java)
+            retrofitClient.create(UtilsApi::class.java)
         )
     }
 }

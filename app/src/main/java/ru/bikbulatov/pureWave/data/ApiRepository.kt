@@ -6,7 +6,7 @@ class ApiRepository @Inject constructor(
     val articlesApi: ArticlesApi,
     val authorsApi: AuthorsApi,
     val podcastsApi: PodcastsApi,
-    val vacanciesApi: VacanciesApi
+    val utilsApi: UtilsApi
 ) {
 
 }
