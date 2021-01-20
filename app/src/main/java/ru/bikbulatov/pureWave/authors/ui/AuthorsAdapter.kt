@@ -5,12 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 
-class AuthorsAdapter(val authors: List<AuthorModel>, val viewModel: AuthorsVM) :
+class AuthorsAdapter(
+    val authors: List<AuthorModel>,
+    val viewModel: AuthorsVM,
+    val fragmentManager: FragmentManager
+) :
     RecyclerView.Adapter<AuthorsAdapter.AuthorViewHolder>() {
 
 
@@ -34,6 +39,11 @@ class AuthorsAdapter(val authors: List<AuthorModel>, val viewModel: AuthorsVM) :
             .into(holder.ivAuthor)
         holder.tvAuthorName.setOnClickListener {
             viewModel.getAuthor(authors[position].id)
+            fragmentManager
+                .beginTransaction()
+                .replace(R.id.flContainer, FragmentSingleAuthor())
+                .commit()
+
         }
     }
 

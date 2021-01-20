@@ -8,12 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
-import ru.bikbulatov.pureWave.databinding.FragmentAuthorsBinding
+import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
 
-@AndroidEntryPoint
-class FragmentAuthors : Fragment() {
-    private lateinit var binding: FragmentAuthorsBinding
+class FragmentSingleAuthor : Fragment() {
+    private lateinit var binding: FragmentSingleAuthorBinding
     private lateinit var viewModel: AuthorsVM
 
     override fun onCreateView(
@@ -21,23 +19,22 @@ class FragmentAuthors : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAuthorsBinding.inflate(inflater, container, false)
+        binding = FragmentSingleAuthorBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(AuthorsVM::class.java)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getAuthors()
-        observeOnAuthors()
+        observeOnAuthor()
     }
 
-    fun observeOnAuthors() {
-        viewModel.authorsList.observe(viewLifecycleOwner, Observer {
+    fun observeOnAuthor() {
+        viewModel.author.observe(viewLifecycleOwner, Observer {
             it?.let {
-                binding.rvAuthors.layoutManager =
+                binding.rvSongs.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvAuthors.adapter = AuthorsAdapter(it, viewModel, childFragmentManager)
+//                binding.rvSongs.adapter = AuthorsAdapter(it, viewModel, childFragmentManager)
             }
         })
     }
