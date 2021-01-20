@@ -2,6 +2,7 @@ package ru.bikbulatov.pureWave
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticle
 import ru.bikbulatov.pureWave.authors.ui.FragmentAuthors
@@ -21,34 +22,34 @@ class MainActivity : AppCompatActivity() {
         binding.bnvMain.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_media -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(binding.flContainer.id, FragmentAuthors())
-                        .commit()
+                    supportFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        replace(binding.flContainer.id, FragmentAuthors())
+                    }
                 }
                 R.id.navigation_music -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(binding.flContainer.id, FragmentProgramsCategories())
-                        .commit()
+                    supportFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        replace(binding.flContainer.id, FragmentProgramsCategories())
+                    }
                 }
                 R.id.navigation_main -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(binding.flContainer.id, FragmentPlayer())
-                        .commit()
+                    supportFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        replace(binding.flContainer.id, FragmentPlayer())
+                    }
                 }
                 R.id.navigation_article -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(binding.flContainer.id, FragmentArticle())
-                        .commit()
+                    supportFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        replace(binding.flContainer.id, FragmentArticle())
+                    }
                 }
                 R.id.navigation_search -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(binding.flContainer.id, FragmentSearch())
-                        .commit()
+                    supportFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        replace(binding.flContainer.id, FragmentSearch())
+                    }
                 }
             }
             true
