@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
 
 class FragmentSingleAuthor : Fragment() {
@@ -35,7 +37,21 @@ class FragmentSingleAuthor : Fragment() {
                 binding.rvSongs.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 //                binding.rvSongs.adapter = AuthorsAdapter(it, viewModel, childFragmentManager)
+                configureView(it)
             }
         })
+    }
+
+    fun configureView(authorModel: AuthorModel) {
+        binding.authorPreview.tvAuthorName.text = authorModel.name
+        binding.authorPreview.tvDescription.text = authorModel.position
+        Glide
+            .with(requireContext())
+            .load(authorModel.photo)
+            .centerCrop()
+            .into(binding.authorPreview.ivAuthor)
+        binding.ivBackBtn.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 }

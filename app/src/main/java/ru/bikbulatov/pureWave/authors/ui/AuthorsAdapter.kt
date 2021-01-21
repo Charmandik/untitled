@@ -1,10 +1,12 @@
 package ru.bikbulatov.pureWave.authors.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,13 +39,17 @@ class AuthorsAdapter(
             .load(authors[position].photo)
             .centerCrop()
             .into(holder.ivAuthor)
-        holder.tvAuthorName.setOnClickListener {
-            viewModel.getAuthor(authors[position].id)
-            fragmentManager
-                .beginTransaction()
-                .replace(R.id.flContainer, FragmentSingleAuthor())
-                .commit()
+        try {
+            holder.clAuthorPreviewRoot.setOnClickListener {
+                viewModel.getAuthor(authors[position].id)
+                fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.flContainer, FragmentSingleAuthor())
+                    .commit()
 
+            }
+        } catch (e: Exception) {
+            Log.d("test111", e.message.toString())
         }
     }
 
@@ -51,5 +57,6 @@ class AuthorsAdapter(
         val ivAuthor: ImageView = view.findViewById(R.id.ivAuthor)
         val tvAuthorName: TextView = view.findViewById(R.id.tvAuthorName)
         val tvDescription: TextView = view.findViewById(R.id.tvDescription)
+        val clAuthorPreviewRoot: ConstraintLayout = view.findViewById(R.id.clAuthorPreviewRoot)
     }
 }

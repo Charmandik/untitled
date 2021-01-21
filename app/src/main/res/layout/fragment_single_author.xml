@@ -23,6 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/ivMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -39,7 +40,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp">
 
-        <include layout="@layout/item_author_preview" />
+        <include
+            android:id="@+id/authorPreview"
+            layout="@layout/item_author_preview" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

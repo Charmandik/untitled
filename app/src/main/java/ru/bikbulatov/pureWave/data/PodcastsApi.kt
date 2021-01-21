@@ -3,7 +3,7 @@ package ru.bikbulatov.pureWave.data
 import retrofit2.http.GET
 import retrofit2.http.Path
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
-import ru.bikbulatov.pureWave.podcasts.PodcastModel
+import ru.bikbulatov.pureWave.podcasts.domain.PodcastModel
 
 interface PodcastsApi {
     @GET("podcasts/")

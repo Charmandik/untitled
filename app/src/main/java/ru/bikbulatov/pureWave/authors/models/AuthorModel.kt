@@ -1,6 +1,6 @@
 package ru.bikbulatov.pureWave.authors.models
 
-import ru.bikbulatov.pureWave.podcasts.PodcastModel
+import ru.bikbulatov.pureWave.podcasts.domain.PodcastModel
 
 class AuthorModel(
     val id: Int,

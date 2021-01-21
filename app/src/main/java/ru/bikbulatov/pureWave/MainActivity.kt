@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticle
-import ru.bikbulatov.pureWave.authors.ui.FragmentAuthors
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
+import ru.bikbulatov.pureWave.podcasts.FragmentPodcasts
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -24,31 +24,32 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_media -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace(binding.flContainer.id, FragmentAuthors())
+//                        replace(binding.flContainer.id, FragmentAuthors())
+                        add(binding.flContainer.id, FragmentPodcasts())
                     }
                 }
                 R.id.navigation_music -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace(binding.flContainer.id, FragmentProgramsCategories())
+                        add(binding.flContainer.id, FragmentProgramsCategories())
                     }
                 }
                 R.id.navigation_main -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace(binding.flContainer.id, FragmentPlayer())
+                        add(binding.flContainer.id, FragmentPlayer())
                     }
                 }
                 R.id.navigation_article -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace(binding.flContainer.id, FragmentArticle())
+                        add(binding.flContainer.id, FragmentArticle())
                     }
                 }
                 R.id.navigation_search -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace(binding.flContainer.id, FragmentSearch())
+                        add(binding.flContainer.id, FragmentSearch())
                     }
                 }
             }
