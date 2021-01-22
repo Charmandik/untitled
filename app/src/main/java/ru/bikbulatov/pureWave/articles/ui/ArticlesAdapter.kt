@@ -4,11 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.RecyclerView
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.articles.models.ArticleModel
 
-class ArticlesAdapter(val articles: List<ArticleModel>, val viewModel: ArticlesVM) :
+class ArticlesAdapter(
+    val articles: List<ArticleModel>,
+    val viewModel: ArticlesVM,
+    val fragmentManager: FragmentManager
+) :
     RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
 
@@ -24,13 +31,17 @@ class ArticlesAdapter(val articles: List<ArticleModel>, val viewModel: ArticlesV
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.tvArticleTitle.text = articles[position].title
-        holder.tvArticleTitle.setOnClickListener {
+        holder.clArticleRoot.setOnClickListener {
             viewModel.getArticle(articles[position].id)
+            fragmentManager.commit {
+                replace(R.id.flContainer, FragmentSingleArticle())
+            }
         }
     }
 
     inner class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvArticleTitle: TextView = view.findViewById(R.id.tvArticleTitle)
         val tvNewWarning: TextView = view.findViewById(R.id.tvNewWarning)
+        val clArticleRoot: ConstraintLayout = view.findViewById(R.id.clArticleRoot)
     }
 }

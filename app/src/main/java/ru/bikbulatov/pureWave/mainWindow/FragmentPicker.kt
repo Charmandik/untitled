@@ -35,7 +35,7 @@ class FragmentPicker : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 //        podcastsVM.getPodcasts()
         articlesVM.getArticles()
-//        authorsVM.getAuthors()
+        authorsVM.getAuthors()
         observeOnAuthors()
         observeOnArticles()
         observeOnPodcasts()
@@ -44,7 +44,9 @@ class FragmentPicker : Fragment() {
     private fun observeOnAuthors() {
         authorsVM.authorsList.observe(viewLifecycleOwner, Observer {
             it?.let {
-
+//                binding.rvAuthors.layoutManager =
+//                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//                binding.rvAuthors.adapter = ArticlesBlogAdapter(it)
             }
         })
     }
@@ -52,9 +54,9 @@ class FragmentPicker : Fragment() {
     private fun observeOnArticles() {
         articlesVM.articles.observe(viewLifecycleOwner, Observer {
             it?.let {
-                binding.rvAuthors.layoutManager =
+                binding.rvArticles.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                binding.rvAuthors.adapter = ArticlesBlogAdapter(it)
+                binding.rvArticles.adapter = ArticlesBlogAdapter(it)
             }
         })
     }
