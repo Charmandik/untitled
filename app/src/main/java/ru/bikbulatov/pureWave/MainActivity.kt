@@ -6,6 +6,7 @@ import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticle
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
+import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
 import ru.bikbulatov.pureWave.podcasts.FragmentPodcasts
 
 @AndroidEntryPoint
@@ -24,14 +25,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_media -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-//                        replace(binding.flContainer.id, FragmentAuthors())
-                        add(binding.flContainer.id, FragmentPodcasts())
+                        replace(
+                            binding.flContainer.id,
+                            FragmentPicker()
+                        ) //its true position of picker
                     }
                 }
                 R.id.navigation_music -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        add(binding.flContainer.id, FragmentProgramsCategories())
+                        add(binding.flContainer.id, FragmentPodcasts())
+//                        add(binding.flContainer.id, FragmentPicker())
                     }
                 }
                 R.id.navigation_main -> {

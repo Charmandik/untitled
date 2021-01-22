@@ -2,7 +2,7 @@ package ru.bikbulatov.pureWave.data
 
 import retrofit2.http.GET
 import retrofit2.http.Path
-import ru.bikbulatov.pureWave.VacanciesModel
+import ru.bikbulatov.pureWave.settings.VacanciesModel
 
 interface UtilsApi {
     @GET("vacancies")

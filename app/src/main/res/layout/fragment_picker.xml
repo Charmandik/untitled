@@ -6,8 +6,9 @@
     android:layout_height="match_parent"
     android:layout_marginStart="16dp"
     android:layout_marginTop="8dp">
-
+    <!--ПОМЕНЯТЬ ИКОНКУ НА БУРГЕР-->
     <ImageView
+        android:id="@+id/ivMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_black"
@@ -18,6 +19,7 @@
         android:id="@+id/ivSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,57 +33,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvReleasesTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="New Releases"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvReleases"
+    <LinearLayout
+        android:id="@+id/llRecommendation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvReleasesTitle"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_release_preview" />
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/ivMenu">
 
-    <TextView
-        android:id="@+id/tvProgramsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Programs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvReleases" />
+        <TextView
+            android:id="@+id/tvReleasesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Рекомендации"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPrograms"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvReleases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvReleasesTitle"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_recommendation" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llPodcasts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvProgramsTitle"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_program_preview" />
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/llRecommendation">
 
-    <TextView
-        android:id="@+id/tvAuthorsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Authors"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPrograms" />
+        <TextView
+            android:id="@+id/tvProgramsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Подкасты"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvReleases" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tvAuthors"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPodcasts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvProgramsTitle"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_podcast_categorie_preview" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llArticles"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvAuthorsTitle"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_author_preview" />
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/llPodcasts">
+
+        <TextView
+            android:id="@+id/tvAuthorsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Блог"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvPodcasts" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAuthors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvAuthorsTitle"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_author_preview" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

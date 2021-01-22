@@ -1,6 +1,5 @@
 package ru.bikbulatov.pureWave.authors.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,18 +38,15 @@ class AuthorsAdapter(
             .load(authors[position].photo)
             .centerCrop()
             .into(holder.ivAuthor)
-        try {
-            holder.clAuthorPreviewRoot.setOnClickListener {
-                viewModel.getAuthor(authors[position].id)
-                fragmentManager
-                    .beginTransaction()
-                    .replace(R.id.flContainer, FragmentSingleAuthor())
-                    .commit()
+        holder.clAuthorPreviewRoot.setOnClickListener {
+            viewModel.getAuthor(authors[position].id)
+            fragmentManager
+                .beginTransaction()
+                .replace(R.id.flContainer, FragmentSingleAuthor())
+                .commit()
 
-            }
-        } catch (e: Exception) {
-            Log.d("test111", e.message.toString())
         }
+
     }
 
     inner class AuthorViewHolder(view: View) : RecyclerView.ViewHolder(view) {

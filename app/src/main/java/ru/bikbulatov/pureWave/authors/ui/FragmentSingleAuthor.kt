@@ -11,33 +11,43 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
+import ru.bikbulatov.pureWave.podcasts.PodcastsViewModel
+import ru.bikbulatov.pureWave.podcasts.domain.PodcastCategorieModel
 
 class FragmentSingleAuthor : Fragment() {
     private lateinit var binding: FragmentSingleAuthorBinding
-    private lateinit var viewModel: AuthorsVM
-
+    private lateinit var authorsVM: AuthorsVM
+    private lateinit var podcastsViewModel: PodcastsViewModel
+    val podcasts: MutableList<PodcastCategorieModel> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSingleAuthorBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(requireActivity()).get(AuthorsVM::class.java)
+        authorsVM = ViewModelProvider(requireActivity()).get(AuthorsVM::class.java)
+        podcastsViewModel = ViewModelProvider(requireActivity()).get(PodcastsViewModel::class.java)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeOnAuthor()
+
     }
 
     fun observeOnAuthor() {
-        viewModel.author.observe(viewLifecycleOwner, Observer {
+        authorsVM.author.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.rvSongs.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 //                binding.rvSongs.adapter = AuthorsAdapter(it, viewModel, childFragmentManager)
                 configureView(it)
+
+                for (podcast in it.podcasts) {
+                    podcastsViewModel.getPodcast(podcast.id)
+                    observeOnPodcast()
+                }
             }
         })
     }
@@ -53,5 +63,11 @@ class FragmentSingleAuthor : Fragment() {
         binding.ivBackBtn.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+    }
+
+    fun observeOnPodcast() {
+        podcastsViewModel.podcast.observe(viewLifecycleOwner, Observer {
+            podcasts.add(it)
+        })
     }
 }

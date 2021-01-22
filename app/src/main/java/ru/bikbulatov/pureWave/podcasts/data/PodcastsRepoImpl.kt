@@ -3,12 +3,12 @@ package ru.bikbulatov.pureWave.podcasts.data
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import ru.bikbulatov.pureWave.data.NetworkHolder
-import ru.bikbulatov.pureWave.podcasts.domain.PodcastModel
+import ru.bikbulatov.pureWave.podcasts.domain.PodcastCategorieModel
 import ru.bikbulatov.pureWave.podcasts.domain.PodcastsRepo
 
 
 class PodcastsRepoImpl : PodcastsRepo {
-    override suspend fun getPodcasts(podcasts: MutableLiveData<List<PodcastModel>>) {
+    override suspend fun getPodcasts(podcasts: MutableLiveData<List<PodcastCategorieModel>>) {
         try {
             val response = NetworkHolder.apiRepository.podcastsApi.getPodcasts()
             response.let {
@@ -20,7 +20,7 @@ class PodcastsRepoImpl : PodcastsRepo {
         }
     }
 
-    override suspend fun getPodcast(id: Int, podcast: MutableLiveData<PodcastModel>) {
+    override suspend fun getPodcast(id: Int, podcast: MutableLiveData<PodcastCategorieModel>) {
         try {
             val response = NetworkHolder.apiRepository.podcastsApi.getPodcast(id)
             response.let {

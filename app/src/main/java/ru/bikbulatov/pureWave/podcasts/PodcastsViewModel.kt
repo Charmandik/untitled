@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.bikbulatov.pureWave.podcasts.domain.PodcastModel
+import ru.bikbulatov.pureWave.podcasts.domain.PodcastCategorieModel
 import ru.bikbulatov.pureWave.podcasts.domain.PodcastsRepo
 
 class PodcastsViewModel @ViewModelInject constructor(val podcastsRepo: PodcastsRepo) : ViewModel() {
-    val podcasts: MutableLiveData<List<PodcastModel>> = MutableLiveData()
+    val podcasts: MutableLiveData<List<PodcastCategorieModel>> = MutableLiveData()
 
     fun getPodcasts() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -18,7 +18,7 @@ class PodcastsViewModel @ViewModelInject constructor(val podcastsRepo: PodcastsR
         }
     }
 
-    val podcast: MutableLiveData<PodcastModel> = MutableLiveData()
+    val podcast: MutableLiveData<PodcastCategorieModel> = MutableLiveData()
 
     fun getPodcast(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
