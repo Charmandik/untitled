@@ -37,7 +37,7 @@ class FragmentArticle : Fragment() {
             it?.let {
                 binding.rvArticles.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvArticles.adapter = ArticlesAdapter(it, viewModel)
+                binding.rvArticles.adapter = ArticlesAdapter(it, viewModel,parentFragmentManager)
             }
         })
     }

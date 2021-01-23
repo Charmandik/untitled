@@ -18,14 +18,17 @@
 
     <TextView
         android:id="@+id/tvArticleTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="My life with Jesus"
+        android:layout_marginEnd="8dp"
+        android:text="My life with JesusMy life with JesusMy life with JesusMy life with JesusMy life with JesusMy life with JesusMy life with JesusMy life with JesusMy life with Jesus"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvNewWarning"
         app:layout_constraintStart_toEndOf="@+id/ivArticleIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="300dp" />
 
     <TextView
         android:id="@+id/tvNewWarning"

@@ -1,6 +1,7 @@
 package ru.bikbulatov.pureWave.articles.ui
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,8 @@ class FragmentSingleArticle : Fragment() {
     fun observeOnPodcasts() {
         viewModel.singleArticle.observe(viewLifecycleOwner, Observer {
             it?.let {
-
+                binding.tvTitle.text = it.title
+                binding.tvArticleBody.text = Html.fromHtml(it.content)
             }
         })
     }
