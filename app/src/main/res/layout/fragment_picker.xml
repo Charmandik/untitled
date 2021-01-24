@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="16dp"
     android:layout_marginTop="8dp">
-    <!--ПОМЕНЯТЬ ИКОНКУ НА БУРГЕР-->
+
     <ImageView
         android:id="@+id/ivMenu"
         android:layout_width="24dp"
