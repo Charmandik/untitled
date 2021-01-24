@@ -1,6 +1,7 @@
 package ru.bikbulatov.pureWave.mainWindow
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.bikbulatov.pureWave.articles.ui.ArticlesVM
+import ru.bikbulatov.pureWave.authors.ui.AuthorsAdapter
 import ru.bikbulatov.pureWave.authors.ui.AuthorsVM
 import ru.bikbulatov.pureWave.databinding.FragmentPickerBinding
 import ru.bikbulatov.pureWave.podcasts.PodcastsViewModel
@@ -33,8 +35,8 @@ class FragmentPicker : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        podcastsVM.getPodcasts()
-        articlesVM.getArticles()
+//        podcastsVM.getPodcasts()  // в целом всё работает, возможно нужно еще с цветом текста и рахмерами картинок посмотреть
+//        articlesVM.getArticles()   //осталось layout manager нормальный и картинки привести к нужному размеру
         authorsVM.getAuthors()
         observeOnAuthors()
         observeOnArticles()
@@ -44,9 +46,9 @@ class FragmentPicker : Fragment() {
     private fun observeOnAuthors() {
         authorsVM.authorsList.observe(viewLifecycleOwner, Observer {
             it?.let {
-//                binding.rvAuthors.layoutManager =
-//                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//                binding.rvAuthors.adapter = ArticlesBlogAdapter(it)
+                binding.rvAuthors.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                binding.rvAuthors.adapter = AuthorsAdapter(it, authorsVM, parentFragmentManager)
             }
         })
     }

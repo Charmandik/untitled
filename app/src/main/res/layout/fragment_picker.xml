@@ -114,6 +114,33 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/tvArticlesTitle"
             tools:itemCount="1"
+            tools:listitem="@layout/item_article_blog" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAuthors"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/llArticles">
+
+        <TextView
+            android:id="@+id/tvAuthorsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Авторы"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvPodcasts" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAuthors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvArticlesTitle"
+            tools:itemCount="1"
             tools:listitem="@layout/item_author_preview" />
     </LinearLayout>
 
