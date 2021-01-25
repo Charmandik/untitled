@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ru.bikbulatov.pureWave.articles.ui.ArticlesVM
 import ru.bikbulatov.pureWave.authors.ui.AuthorsAdapter
 import ru.bikbulatov.pureWave.authors.ui.AuthorsVM
@@ -34,8 +35,8 @@ class FragmentPicker : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        podcastsVM.getPodcasts()  // в целом всё работает, возможно нужно еще с цветом текста и рахмерами картинок посмотреть
-//        articlesVM.getArticles()   //осталось layout manager нормальный и картинки привести к нужному размеру
+        podcastsVM.getPodcasts()  // в целом всё работает, возможно нужно еще с цветом текста и рахмерами картинок посмотреть
+        articlesVM.getArticles()   //осталось layout manager нормальный и картинки привести к нужному размеру
         authorsVM.getAuthors()
         observeOnAuthors()
         observeOnArticles()

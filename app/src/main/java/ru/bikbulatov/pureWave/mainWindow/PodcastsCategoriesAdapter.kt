@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.podcasts.domain.PodcastCategorieModel
@@ -35,8 +37,9 @@ class PodcastsCategoriesAdapter(val podcastsCategories: List<PodcastCategorieMod
             .with(holder.itemView.context)
             .asBitmap()
             .apply(myOptions)
-            .load("https://purewave.ru/" + podcastsCategories[position].cover)
+            .load(podcastsCategories[position].cover)
             .centerCrop()
+            .transform(CenterCrop(), RoundedCorners(25))
             .into(holder.ivCover)
         holder.tvName.text = podcastsCategories[position].title
         holder.tvTracksCount.text = podcastsCategories[position].tracksNum.toString()

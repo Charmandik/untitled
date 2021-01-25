@@ -9,6 +9,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 
@@ -37,6 +39,7 @@ class AuthorsAdapter(
             .with(holder.itemView.context)
             .load(authors[position].photo)
             .centerCrop()
+            .transform(CenterCrop(), RoundedCorners(25))
             .into(holder.ivAuthor)
         holder.clAuthorPreviewRoot.setOnClickListener {
             viewModel.getAuthor(authors[position].id)

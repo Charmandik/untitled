@@ -30,16 +30,15 @@ class ArticlesBlogAdapter(private val articlesBlog: List<ArticleModel>) :
 
     override fun onBindViewHolder(holder: ArticlesBlogViewHolder, position: Int) {
         val myOptions = RequestOptions()
-            .fitCenter() // or centerCrop
-            .override(128, 128)
+            .override(512, 256)
 
         Glide
             .with(holder.itemView.context)
             .asBitmap()
             .apply(myOptions)
-            .transform(CenterCrop(), RoundedCorners(25))
             .load(articlesBlog[position].cover)
             .centerCrop()
+            .transform(CenterCrop(), RoundedCorners(25))
             .into(holder.ivIcon)
         holder.tvTitle.text = articlesBlog[position].title
         holder.tvAuthorName.text = articlesBlog[position].title

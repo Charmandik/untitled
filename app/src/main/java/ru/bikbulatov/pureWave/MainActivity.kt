@@ -17,6 +17,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         configureBottomNavigation()
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace(
+                binding.flContainer.id,
+                FragmentPicker()
+            ) //its true position of picker
+        }
     }
 
     private fun configureBottomNavigation() {
@@ -25,35 +32,39 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_media -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace(
+                        add(
                             binding.flContainer.id,
                             FragmentPicker()
-                        ) //its true position of picker
+                        )
+                        addToBackStack(null)
                     }
                 }
                 R.id.navigation_music -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
                         add(binding.flContainer.id, FragmentPodcasts())
-//                        add(binding.flContainer.id, FragmentPicker())
+                        addToBackStack(null)
                     }
                 }
                 R.id.navigation_main -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
                         add(binding.flContainer.id, FragmentPlayer())
+                        addToBackStack(null)
                     }
                 }
                 R.id.navigation_article -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
                         add(binding.flContainer.id, FragmentArticle())
+                        addToBackStack(null)
                     }
                 }
                 R.id.navigation_search -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
                         add(binding.flContainer.id, FragmentSearch())
+                        addToBackStack(null)
                     }
                 }
             }
