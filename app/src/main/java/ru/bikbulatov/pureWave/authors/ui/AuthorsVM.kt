@@ -17,10 +17,10 @@ class AuthorsVM @ViewModelInject constructor(val authorsRepo: AuthorsRepo) : Vie
         }
     }
 
-    val author: MutableLiveData<AuthorModel> = MutableLiveData()
+    val singleAuthor: MutableLiveData<AuthorModel> = MutableLiveData()
     fun getAuthor(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            authorsRepo.getAuthor(id, author)
+            authorsRepo.getAuthor(id, singleAuthor)
         }
     }
 }

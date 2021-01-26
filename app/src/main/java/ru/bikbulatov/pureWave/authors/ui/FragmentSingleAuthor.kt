@@ -1,6 +1,7 @@
 package ru.bikbulatov.pureWave.authors.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,10 +40,11 @@ class FragmentSingleAuthor : Fragment() {
     }
 
     fun observeOnAuthor() {
-        authorsVM.author.observe(viewLifecycleOwner, Observer {
+        authorsVM.singleAuthor.observe(viewLifecycleOwner, Observer {
             it?.let {
                 configureView(it)
                 podcastsViewModel.podcastsAllLoadedSize = it.podcasts.size
+                Log.d("test999", "podcasts size = ${it.podcasts.size}")
                 for (podcast in it.podcasts) {
                     podcastsViewModel.getPodcast(podcast.id)
                     observeOnPodcast()
@@ -67,7 +69,9 @@ class FragmentSingleAuthor : Fragment() {
     fun observeOnPodcast() {
         podcastsViewModel.singlePodcast.observe(viewLifecycleOwner, Observer {
             podcasts.add(it)
+            Log.d("test999", "podcasts loaded size = ${podcasts.size}")
             if (podcasts.size >= podcastsViewModel.podcastsAllLoadedSize) {
+                Log.d("test999", "started drawing adapter")
                 binding.rvSongs.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 binding.rvSongs.adapter = PodcastsAdapter(podcasts, podcastsViewModel)
