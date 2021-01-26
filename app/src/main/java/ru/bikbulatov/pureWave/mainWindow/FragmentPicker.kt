@@ -12,7 +12,7 @@ import ru.bikbulatov.pureWave.articles.ui.ArticlesVM
 import ru.bikbulatov.pureWave.authors.ui.AuthorsAdapter
 import ru.bikbulatov.pureWave.authors.ui.AuthorsVM
 import ru.bikbulatov.pureWave.databinding.FragmentPickerBinding
-import ru.bikbulatov.pureWave.podcasts.PodcastsViewModel
+import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
 class FragmentPicker : Fragment() {
     private lateinit var binding: FragmentPickerBinding
     private lateinit var authorsVM: AuthorsVM

@@ -1,4 +1,4 @@
-package ru.bikbulatov.pureWave.podcasts
+package ru.bikbulatov.pureWave.podcasts.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.bikbulatov.pureWave.R
-import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
+import ru.bikbulatov.pureWave.podcasts.domain.models.TrackModel
 
 class PodcastsAdapter(
-    private val podcasts: List<PodcastModel>,
+    private val podcasts: List<TrackModel>,
     podcastsViewModel: PodcastsViewModel
 ) :
     RecyclerView.Adapter<PodcastsAdapter.PodcastsViewHolder>() {

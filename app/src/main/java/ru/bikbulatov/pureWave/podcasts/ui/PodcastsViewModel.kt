@@ -1,4 +1,4 @@
-package ru.bikbulatov.pureWave.podcasts
+package ru.bikbulatov.pureWave.podcasts.ui
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategorieModel
 import ru.bikbulatov.pureWave.podcasts.domain.PodcastsRepo
+import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategorieModel
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
 
 class PodcastsViewModel @ViewModelInject constructor(val podcastsRepo: PodcastsRepo) : ViewModel() {

@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
-import ru.bikbulatov.pureWave.podcasts.PodcastsAdapter
-import ru.bikbulatov.pureWave.podcasts.PodcastsViewModel
+import ru.bikbulatov.pureWave.podcasts.ui.PodcastsAdapter
+import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
 
 class FragmentSingleAuthor : Fragment() {
@@ -74,7 +74,7 @@ class FragmentSingleAuthor : Fragment() {
                 Log.d("test999", "started drawing adapter")
                 binding.rvSongs.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvSongs.adapter = PodcastsAdapter(podcasts, podcastsViewModel)
+                binding.rvSongs.adapter = PodcastsAdapter(podcasts.first().tracks, podcastsViewModel)
             }
         })
     }

@@ -1,4 +1,4 @@
-package ru.bikbulatov.pureWave.podcasts
+package ru.bikbulatov.pureWave.podcasts.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

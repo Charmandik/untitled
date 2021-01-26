@@ -7,7 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticle
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
-import ru.bikbulatov.pureWave.podcasts.FragmentPodcasts
+import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcasts
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
