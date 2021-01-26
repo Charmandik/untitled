@@ -30,14 +30,17 @@ class MainActivity : AppCompatActivity() {
         binding.bnvMain.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_media -> {
-                    supportFragmentManager.commit {
-                        setReorderingAllowed(true)
-                        add(
-                            binding.flContainer.id,
-                            FragmentPicker()
-                        )
-                        addToBackStack(null)
-                    }
+                    if (supportFragmentManager.findFragmentByTag(FragmentPicker.TAG) == null) {
+                        supportFragmentManager.commit {
+                            setReorderingAllowed(true)
+                            add(binding.flContainer.id, FragmentPicker())
+                            addToBackStack(FragmentPicker.TAG)
+                        }
+                    } else
+                        supportFragmentManager.commit {
+                            detach(supportFragmentManager.fragments.last())
+                            attach(supportFragmentManager.findFragmentByTag(FragmentPicker.TAG)!!)
+                        }
                 }
                 R.id.navigation_music -> {
                     supportFragmentManager.commit {

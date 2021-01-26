@@ -21,7 +21,7 @@ class AuthorsRepoImpl : AuthorsRepo {
 
     override suspend fun getAuthor(id: Int, author: MutableLiveData<AuthorModel>) {
         try {
-            val response = NetworkHolder.apiRepository.authorsApi.getAuthor(id)
+            val response = NetworkHolder.apiRepository.authorsApi.getAuthor(authorId = id)
             response.let {
                 author.postValue(response)
                 Log.d("test123", "test222")

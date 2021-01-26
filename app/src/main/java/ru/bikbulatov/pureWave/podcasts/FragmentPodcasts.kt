@@ -30,7 +30,7 @@ class FragmentPodcasts : Fragment() {
     }
 
     fun observeOnPodcasts() {
-        viewModel.podcasts.observe(viewLifecycleOwner, Observer {
+        viewModel.podcastsList.observe(viewLifecycleOwner, Observer {
             it?.let {
 
             }

@@ -20,7 +20,7 @@ class ArticlesRepoImpl : ArticlesRepo {
 
     override suspend fun getArticle(id: Int, article: MutableLiveData<ArticleModel>) {
         try {
-            val response = NetworkHolder.apiRepository.articlesApi.getArticle(id)
+            val response = NetworkHolder.apiRepository.articlesApi.getArticle(articleId = id)
             response.let {
                 article.postValue(response)
                 Log.d("test123", "test222")

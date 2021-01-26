@@ -11,14 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
+import ru.bikbulatov.pureWave.podcasts.PodcastsAdapter
 import ru.bikbulatov.pureWave.podcasts.PodcastsViewModel
-import ru.bikbulatov.pureWave.podcasts.domain.PodcastCategorieModel
+import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
 
 class FragmentSingleAuthor : Fragment() {
     private lateinit var binding: FragmentSingleAuthorBinding
     private lateinit var authorsVM: AuthorsVM
     private lateinit var podcastsViewModel: PodcastsViewModel
-    val podcasts: MutableList<PodcastCategorieModel> = mutableListOf()
+
+    val podcasts: MutableList<PodcastModel> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,11 +41,8 @@ class FragmentSingleAuthor : Fragment() {
     fun observeOnAuthor() {
         authorsVM.author.observe(viewLifecycleOwner, Observer {
             it?.let {
-                binding.rvSongs.layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-//                binding.rvSongs.adapter = AuthorsAdapter(it, viewModel, childFragmentManager)
                 configureView(it)
-
+                podcastsViewModel.podcastsAllLoadedSize = it.podcasts.size
                 for (podcast in it.podcasts) {
                     podcastsViewModel.getPodcast(podcast.id)
                     observeOnPodcast()
@@ -66,8 +65,13 @@ class FragmentSingleAuthor : Fragment() {
     }
 
     fun observeOnPodcast() {
-        podcastsViewModel.podcast.observe(viewLifecycleOwner, Observer {
+        podcastsViewModel.singlePodcast.observe(viewLifecycleOwner, Observer {
             podcasts.add(it)
+            if (podcasts.size >= podcastsViewModel.podcastsAllLoadedSize) {
+                binding.rvSongs.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                binding.rvSongs.adapter = PodcastsAdapter(podcasts, podcastsViewModel)
+            }
         })
     }
 }

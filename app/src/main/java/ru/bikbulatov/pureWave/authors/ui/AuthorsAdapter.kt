@@ -45,7 +45,7 @@ class AuthorsAdapter(
             viewModel.getAuthor(authors[position].id)
             fragmentManager
                 .beginTransaction()
-                .replace(R.id.flContainer, FragmentSingleAuthor())
+                .add(R.id.flContainer, FragmentSingleAuthor())
                 .commit()
 
         }
