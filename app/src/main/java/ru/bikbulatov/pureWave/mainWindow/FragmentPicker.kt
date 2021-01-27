@@ -13,14 +13,16 @@ import ru.bikbulatov.pureWave.authors.ui.AuthorsAdapter
 import ru.bikbulatov.pureWave.authors.ui.AuthorsVM
 import ru.bikbulatov.pureWave.databinding.FragmentPickerBinding
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
+
 class FragmentPicker : Fragment() {
     private lateinit var binding: FragmentPickerBinding
     private lateinit var authorsVM: AuthorsVM
     private lateinit var podcastsVM: PodcastsViewModel
     private lateinit var articlesVM: ArticlesVM
 
-    companion object{
+    companion object {
         const val TAG = "FragmentPicker"
+        const val ITEM_AUTHORS_COUNT = 6
     }
 
     override fun onCreateView(
@@ -50,7 +52,11 @@ class FragmentPicker : Fragment() {
             it?.let {
                 binding.rvAuthors.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                binding.rvAuthors.adapter = AuthorsAdapter(it, authorsVM, parentFragmentManager)
+                binding.rvAuthors.adapter = AuthorsAdapter(
+                    it.sortedBy { it.createdOn.toInt() }.take(ITEM_AUTHORS_COUNT),
+                    authorsVM,
+                    parentFragmentManager
+                )
             }
         })
     }

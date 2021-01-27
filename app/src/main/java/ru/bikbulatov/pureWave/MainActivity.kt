@@ -1,5 +1,6 @@
 package ru.bikbulatov.pureWave
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
@@ -7,6 +8,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticle
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
+import ru.bikbulatov.pureWave.player.IPlayerCommands
+import ru.bikbulatov.pureWave.player.PlayerService
 import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcasts
 
 @AndroidEntryPoint

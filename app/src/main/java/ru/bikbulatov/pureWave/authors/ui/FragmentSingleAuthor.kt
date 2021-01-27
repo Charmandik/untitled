@@ -72,6 +72,7 @@ class FragmentSingleAuthor : Fragment() {
             Log.d("test999", "podcasts loaded size = ${podcasts.size}")
             if (podcasts.size >= podcastsViewModel.podcastsAllLoadedSize) {
                 Log.d("test999", "started drawing adapter")
+                //todo сейчас отправляются только первые треки, нужно их либо запаковать вместе, либо тут вообще будет открываться адаптер с категориями
                 binding.rvSongs.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 binding.rvSongs.adapter = PodcastsAdapter(podcasts.first().tracks, podcastsViewModel)

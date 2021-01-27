@@ -39,7 +39,7 @@ class AuthorsAdapter(
             .with(holder.itemView.context)
             .load(authors[position].photo)
             .centerCrop()
-            .transform(CenterCrop(), RoundedCorners(25))
+            .transform(CenterCrop(), RoundedCorners(180))
             .into(holder.ivAuthor)
         holder.clAuthorPreviewRoot.setOnClickListener {
             viewModel.getAuthor(authors[position].id)
@@ -47,9 +47,7 @@ class AuthorsAdapter(
                 .beginTransaction()
                 .add(R.id.flContainer, FragmentSingleAuthor())
                 .commit()
-
         }
-
     }
 
     inner class AuthorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
