@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ivBtnPlay">
 
         <TextView
-            android:id="@+id/tv_podcasts_title"
+            android:id="@+id/tvPodcastsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -50,7 +50,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tv_podcasts_title"
+            app:layout_constraintTop_toBottomOf="@+id/tvPodcastsTitle"
             tools:itemCount="5"
             tools:listitem="@layout/item_author_compositions" />
 
