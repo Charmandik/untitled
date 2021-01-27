@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.articles.ui.ArticlesVM
 import ru.bikbulatov.pureWave.authors.ui.AuthorsAdapter
 import ru.bikbulatov.pureWave.authors.ui.AuthorsVM
+import ru.bikbulatov.pureWave.authors.ui.FragmentAuthors
 import ru.bikbulatov.pureWave.databinding.FragmentPickerBinding
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
 
@@ -45,6 +48,7 @@ class FragmentPicker : Fragment() {
         observeOnAuthors()
         observeOnArticles()
         observeOnPodcasts()
+        configureView()
     }
 
     private fun observeOnAuthors() {
@@ -79,5 +83,15 @@ class FragmentPicker : Fragment() {
                 binding.rvPodcasts.adapter = PodcastsCategoriesAdapter(it)
             }
         })
+    }
+
+    fun configureView() {
+        binding.tvAuthorsTitle.setOnClickListener {
+            parentFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(R.id.flContainer, FragmentAuthors())
+                addToBackStack(FragmentAuthors.TAG)
+            }
+        }
     }
 }

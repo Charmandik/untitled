@@ -16,6 +16,10 @@ class FragmentAuthors : Fragment() {
     private lateinit var binding: FragmentAuthorsBinding
     private lateinit var viewModel: AuthorsVM
 
+    companion object{
+        const val TAG = "FragmentPicker"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
