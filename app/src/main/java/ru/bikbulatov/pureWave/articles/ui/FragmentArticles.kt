@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.databinding.FragmentArticlesListBinding
 
 @AndroidEntryPoint
-class FragmentArticle : Fragment() {
+class FragmentArticles : Fragment() {
     private lateinit var binding: FragmentArticlesListBinding
     private lateinit var viewModel: ArticlesVM
 
@@ -37,7 +37,7 @@ class FragmentArticle : Fragment() {
             it?.let {
                 binding.rvArticles.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvArticles.adapter = ArticlesAdapter(it, viewModel,parentFragmentManager)
+                binding.rvArticles.adapter = ArticlesAdapter(it, viewModel, parentFragmentManager)
             }
         })
     }

@@ -11,10 +11,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.articles.ui.ArticlesVM
+import ru.bikbulatov.pureWave.articles.ui.FragmentArticles
 import ru.bikbulatov.pureWave.authors.ui.AuthorsAdapter
 import ru.bikbulatov.pureWave.authors.ui.AuthorsVM
 import ru.bikbulatov.pureWave.authors.ui.FragmentAuthors
 import ru.bikbulatov.pureWave.databinding.FragmentPickerBinding
+import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcastsCategories
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
 
 class FragmentPicker : Fragment() {
@@ -93,5 +95,20 @@ class FragmentPicker : Fragment() {
                 addToBackStack(FragmentAuthors.TAG)
             }
         }
+        binding.tvPodcastsTitle.setOnClickListener {
+            parentFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(R.id.flContainer, FragmentPodcastsCategories())
+                addToBackStack(FragmentAuthors.TAG)
+            }
+        }
+        binding.tvArticlesTitle.setOnClickListener {
+            parentFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(R.id.flContainer, FragmentArticles())
+                addToBackStack(FragmentAuthors.TAG)
+            }
+        }
+
     }
 }

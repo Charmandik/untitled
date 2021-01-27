@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/llRecommendation">
 
         <TextView
-            android:id="@+id/tvProgramsTitle"
+            android:id="@+id/tv_podcasts_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -91,7 +91,7 @@
             android:id="@+id/rvPodcasts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tvProgramsTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tv_podcasts_title"
             tools:itemCount="1"
             tools:listitem="@layout/item_podcast_categorie_preview" />
     </LinearLayout>
