@@ -28,6 +28,8 @@ class FragmentPicker : Fragment() {
     companion object {
         const val TAG = "FragmentPicker"
         const val ITEM_AUTHORS_COUNT = 6
+        const val ITEM_ARTICLES_COUNT = 10
+        const val ITEM_PODCASTS_COUNT = 10
     }
 
     override fun onCreateView(
@@ -72,7 +74,8 @@ class FragmentPicker : Fragment() {
             it?.let {
                 binding.rvArticles.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                binding.rvArticles.adapter = ArticlesBlogAdapter(it)
+                binding.rvArticles.adapter =
+                    ArticlesBlogAdapter(it.sortedBy { it.createdOn }.take(ITEM_ARTICLES_COUNT))
             }
         })
     }
@@ -82,7 +85,9 @@ class FragmentPicker : Fragment() {
             it?.let {
                 binding.rvPodcasts.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                binding.rvPodcasts.adapter = PodcastsCategoriesAdapter(it)
+                binding.rvPodcasts.adapter =
+                    PodcastsCategoriesAdapter(it.sortedBy { it.lastBuildDate }
+                        .take(ITEM_PODCASTS_COUNT))
             }
         })
     }

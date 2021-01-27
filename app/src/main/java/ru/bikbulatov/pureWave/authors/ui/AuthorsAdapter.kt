@@ -33,8 +33,18 @@ class AuthorsAdapter(
     }
 
     override fun onBindViewHolder(holder: AuthorViewHolder, position: Int) {
-        holder.tvAuthorName.text = authors[position].name
-        holder.tvDescription.text = authors[position].position
+        var authorName = authors[position].name
+        if (authorName.length > 17) {
+            authorName = authorName.take(14) + "..."
+        }
+        holder.tvAuthorName.text = authorName
+
+        var description = authors[position].position
+        if (description.length > 17) {
+            description = description.take(14) + "..."
+        }
+        holder.tvDescription.text = description
+
         Glide
             .with(holder.itemView.context)
             .load(authors[position].photo)

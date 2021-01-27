@@ -41,8 +41,18 @@ class PodcastsCategoriesAdapter(val podcastsCategories: List<PodcastCategorieMod
             .centerCrop()
             .transform(CenterCrop(), RoundedCorners(25))
             .into(holder.ivCover)
-        holder.tvName.text = podcastsCategories[position].title
-        holder.tvTracksCount.text = podcastsCategories[position].tracksNum.toString()
+
+        var title = podcastsCategories[position].title
+        if (title.length > 17) {
+            title = title.take(14) + "..."
+        }
+        holder.tvName.text = title
+
+        var tracksNum = podcastsCategories[position].tracksNum.toString()
+        if (tracksNum.length > 17) {
+            tracksNum = tracksNum.take(14) + "..."
+        }
+        holder.tvTracksCount.text = tracksNum
     }
 
     inner class PodcastCategorieHolder(view: View) : RecyclerView.ViewHolder(view) {

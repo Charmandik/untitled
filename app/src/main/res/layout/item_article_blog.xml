@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="8dp">
+    android:layout_marginEnd="16dp">
 
     <FrameLayout
         android:id="@+id/flIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -32,8 +33,9 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:text="Cyberpunk"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -43,8 +45,9 @@
 
     <TextView
         android:id="@+id/tvAuthorName"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:text="Валентин Стрыкало"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"

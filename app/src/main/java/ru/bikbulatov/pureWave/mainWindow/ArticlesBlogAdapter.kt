@@ -1,5 +1,6 @@
 package ru.bikbulatov.pureWave.mainWindow
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class ArticlesBlogAdapter(private val articlesBlog: List<ArticleModel>) :
 
     override fun onBindViewHolder(holder: ArticlesBlogViewHolder, position: Int) {
         val myOptions = RequestOptions()
-            .override(512, 256)
+            .override(256, 256)
 
         Glide
             .with(holder.itemView.context)
@@ -40,8 +41,18 @@ class ArticlesBlogAdapter(private val articlesBlog: List<ArticleModel>) :
             .centerCrop()
             .transform(CenterCrop(), RoundedCorners(25))
             .into(holder.ivIcon)
-        holder.tvTitle.text = articlesBlog[position].title
-        holder.tvAuthorName.text = articlesBlog[position].title
+
+        var title = articlesBlog[position].title
+        if (title.length > 17) {
+            title = title.take(14) + "..."
+        }
+        holder.tvTitle.text = title
+
+        var intro = articlesBlog[position].intro
+        if (intro.length > 17) {
+            intro = intro.take(14) + "..."
+        }
+        holder.tvAuthorName.text = Html.fromHtml(intro)
     }
 
     inner class ArticlesBlogViewHolder(view: View) : RecyclerView.ViewHolder(view) {
