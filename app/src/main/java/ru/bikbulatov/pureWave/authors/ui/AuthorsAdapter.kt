@@ -1,5 +1,6 @@
 package ru.bikbulatov.pureWave.authors.ui
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import ru.bikbulatov.pureWave.authors.models.AuthorModel
 class AuthorsAdapter(
     val authors: List<AuthorModel>,
     val viewModel: AuthorsVM,
+    val isNeedSpan: Boolean,
     val fragmentManager: FragmentManager
 ) :
     RecyclerView.Adapter<AuthorsAdapter.AuthorViewHolder>() {
@@ -34,13 +36,16 @@ class AuthorsAdapter(
 
     override fun onBindViewHolder(holder: AuthorViewHolder, position: Int) {
         var authorName = authors[position].name
-        if (authorName.length > 17) {
+        if (authorName.length > 19) {
             authorName = authorName.take(14) + "..."
         }
         holder.tvAuthorName.text = authorName
+        if (isNeedSpan)
+            holder.tvAuthorName.paintFlags =
+                holder.tvAuthorName.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         var description = authors[position].position
-        if (description.length > 17) {
+        if (description.length > 19) {
             description = description.take(14) + "..."
         }
         holder.tvDescription.text = description

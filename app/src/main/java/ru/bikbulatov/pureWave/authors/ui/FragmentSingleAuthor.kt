@@ -10,11 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
+import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsAdapter
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
-import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
 
 class FragmentSingleAuthor : Fragment() {
     private lateinit var binding: FragmentSingleAuthorBinding
@@ -60,6 +62,7 @@ class FragmentSingleAuthor : Fragment() {
             .with(requireContext())
             .load(authorModel.photo)
             .centerCrop()
+            .transform(CenterCrop(), RoundedCorners(180))
             .into(binding.authorPreview.ivAuthor)
         binding.ivBackBtn.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -75,7 +78,8 @@ class FragmentSingleAuthor : Fragment() {
                 //todo сейчас отправляются только первые треки, нужно их либо запаковать вместе, либо тут вообще будет открываться адаптер с категориями
                 binding.rvSongs.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvSongs.adapter = PodcastsAdapter(podcasts.first().tracks, podcastsViewModel)
+                binding.rvSongs.adapter =
+                    PodcastsAdapter(podcasts.first().tracks, podcastsViewModel)
             }
         })
     }

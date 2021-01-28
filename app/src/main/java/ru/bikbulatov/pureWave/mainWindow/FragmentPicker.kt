@@ -63,6 +63,7 @@ class FragmentPicker : Fragment() {
                 binding.rvAuthors.adapter = AuthorsAdapter(
                     it.sortedBy { it.createdOn.toInt() }.take(ITEM_AUTHORS_COUNT),
                     authorsVM,
+                    false,
                     parentFragmentManager
                 )
             }

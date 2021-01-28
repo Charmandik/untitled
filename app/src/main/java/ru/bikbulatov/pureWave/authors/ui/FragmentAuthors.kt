@@ -16,7 +16,7 @@ class FragmentAuthors : Fragment() {
     private lateinit var binding: FragmentAuthorsBinding
     private lateinit var viewModel: AuthorsVM
 
-    companion object{
+    companion object {
         const val TAG = "FragmentPicker"
     }
 
@@ -41,7 +41,8 @@ class FragmentAuthors : Fragment() {
             it?.let {
                 binding.rvAuthors.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvAuthors.adapter = AuthorsAdapter(it, viewModel, parentFragmentManager)
+                binding.rvAuthors.adapter =
+                    AuthorsAdapter(it, viewModel, true, parentFragmentManager)
             }
         })
     }

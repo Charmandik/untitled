@@ -62,6 +62,54 @@
                 android:layout_marginTop="16dp"
                 android:textColor="@color/black"
                 tools:text="My Life With JesusMy Life With JesusMy Life With JesusMy Life With JesusMy Life With JesusMy Life With JesusMy Life With JesusMy Life With Jesus" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/decoration_blue_rounded"
+                    android:paddingStart="12dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="2dp"
+                    android:text="Поделиться"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/llLikesCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ivHeartBtn"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_heart" />
+
+                    <TextView
+                        android:id="@+id/tvLikesCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="0"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
