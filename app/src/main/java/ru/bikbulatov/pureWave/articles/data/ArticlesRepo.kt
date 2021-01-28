@@ -6,4 +6,5 @@ import ru.bikbulatov.pureWave.articles.models.ArticleModel
 interface ArticlesRepo {
     suspend fun getArticles(articles: MutableLiveData<List<ArticleModel>>)
     suspend fun getArticle(id: Int, article: MutableLiveData<ArticleModel>)
+    suspend fun toggleLike(id: Int, article: MutableLiveData<ArticleModel>)
 }

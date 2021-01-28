@@ -20,6 +20,7 @@ interface PodcastsApi {
         @Path("id") podcastId: Int
     ): PodcastModel
 
+    //todo изменить модель
     @GET("podcasts/{podcastId}/{songId}")
     suspend fun toggleLike(
         @Header("apikey") apiKey: String = Constants.API_KEY,

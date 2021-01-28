@@ -29,4 +29,16 @@ class ArticlesRepoImpl : ArticlesRepo {
             Log.d("test123", "Articles id error ${e.message}")
         }
     }
+
+    override suspend fun toggleLike(id: Int, article: MutableLiveData<ArticleModel>) {
+        try {
+            val response = NetworkHolder.apiRepository.articlesApi.toggleLike(articleId = id)
+            response.let {
+                article.postValue(response)
+                Log.d("test123", "test222")
+            }
+        } catch (e: Exception) {
+            Log.d("test123", "Articles id error ${e.message}")
+        }
+    }
 }

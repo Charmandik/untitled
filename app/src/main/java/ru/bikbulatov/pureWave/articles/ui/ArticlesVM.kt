@@ -17,11 +17,12 @@ class ArticlesVM @ViewModelInject constructor(val articlesRepo: ArticlesRepo) : 
         }
     }
 
-
     val singleArticle: MutableLiveData<ArticleModel> = MutableLiveData()
     fun getArticle(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             articlesRepo.getArticle(id, singleArticle)
         }
     }
+
+
 }

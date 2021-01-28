@@ -8,13 +8,20 @@ import ru.bikbulatov.pureWave.articles.models.ArticleModel
 interface ArticlesApi {
     @GET("articles")
     suspend fun getArticles(
-        @Header("apikey") apiKey : String = Constants.API_KEY
+        @Header("apikey") apiKey: String = Constants.API_KEY
     ): List<ArticleModel>
 
 
     @GET("articles/{id}")
     suspend fun getArticle(
-        @Header("apikey") apiKey : String = Constants.API_KEY,
-        @Path("id") articleId: Int): ArticleModel
+        @Header("apikey") apiKey: String = Constants.API_KEY,
+        @Path("id") articleId: Int
+    ): ArticleModel
 
+    //todo переделать модель
+    @GET("articles/{articleId}")
+    suspend fun toggleLike(
+        @Header("apikey") apiKey: String = Constants.API_KEY,
+        @Path("articleId") articleId: Int
+    ): ArticleModel
 }
