@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import ru.bikbulatov.pureWave.databinding.FragmentProgramsBinding
+import ru.bikbulatov.pureWave.databinding.FragmentSinglePodcastBinding
 
 class FragmentPodcasts : Fragment() {
-    private lateinit var binding: FragmentProgramsBinding
+    private lateinit var binding: FragmentSinglePodcastBinding
     private lateinit var viewModel: PodcastsViewModel
 
     override fun onCreateView(
@@ -18,7 +18,7 @@ class FragmentPodcasts : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProgramsBinding.inflate(inflater, container, false)
+        binding = FragmentSinglePodcastBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(PodcastsViewModel::class.java)
         return binding.root
     }

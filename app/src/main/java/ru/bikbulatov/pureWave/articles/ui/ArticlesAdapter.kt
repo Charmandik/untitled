@@ -32,6 +32,13 @@ class ArticlesAdapter(
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
+        if (position == 0) {
+            holder.llLikesCount.visibility = View.INVISIBLE
+            holder.tvNewWarning.visibility = View.VISIBLE
+        } else {
+            holder.llLikesCount.visibility = View.VISIBLE
+            holder.tvNewWarning.visibility = View.INVISIBLE
+        }
         holder.tvArticleTitle.text = articles[position].title
         holder.clArticleRoot.setOnClickListener {
             viewModel.getArticle(articles[position].id)

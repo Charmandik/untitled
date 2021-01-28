@@ -46,8 +46,8 @@ class FragmentPicker : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        podcastsVM.getPodcasts()  // в целом всё работает, возможно нужно еще с цветом текста и рахмерами картинок посмотреть
-        articlesVM.getArticles()   //осталось layout manager нормальный и картинки привести к нужному размеру
+        podcastsVM.getPodcasts()
+        articlesVM.getArticles()
         authorsVM.getAuthors()
         observeOnAuthors()
         observeOnArticles()
