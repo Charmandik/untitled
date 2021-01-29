@@ -1,6 +1,5 @@
 package ru.bikbulatov.pureWave.podcasts.ui
 
-import android.content.Intent
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.view.LayoutInflater
@@ -10,11 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.bikbulatov.pureWave.R
-import ru.bikbulatov.pureWave.player.PlayerService
-import ru.bikbulatov.pureWave.podcasts.domain.models.TrackModel
+import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
 
 class PodcastsAdapter(
-    private val podcasts: List<TrackModel>,
+    private val podcasts: MutableList<PodcastModel>,
     podcastsViewModel: PodcastsViewModel
 ) :
     RecyclerView.Adapter<PodcastsAdapter.PodcastsViewHolder>() {
@@ -32,6 +30,9 @@ class PodcastsAdapter(
     }
 
     override fun onBindViewHolder(holder: PodcastsViewHolder, position: Int) {
+        for(podcast in podcasts){
+
+        }
         holder.tvName.text = podcasts[position].title
         holder.tvDuration.text = podcasts[position].playtimeString
         holder.ivBtnPlay.setOnClickListener {

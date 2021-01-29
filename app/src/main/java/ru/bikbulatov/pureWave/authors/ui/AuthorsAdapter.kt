@@ -61,6 +61,7 @@ class AuthorsAdapter(
             fragmentManager
                 .beginTransaction()
                 .add(R.id.flContainer, FragmentSingleAuthor())
+                .addToBackStack(null)
                 .commit()
         }
     }

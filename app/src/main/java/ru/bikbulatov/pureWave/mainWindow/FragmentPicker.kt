@@ -76,7 +76,10 @@ class FragmentPicker : Fragment() {
                 binding.rvArticles.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 binding.rvArticles.adapter =
-                    ArticlesBlogAdapter(it.sortedBy { it.createdOn }.take(ITEM_ARTICLES_COUNT))
+                    ArticlesBlogAdapter(
+                        it.sortedBy { it.createdOn }.take(ITEM_ARTICLES_COUNT),
+                        parentFragmentManager
+                    )
             }
         })
     }

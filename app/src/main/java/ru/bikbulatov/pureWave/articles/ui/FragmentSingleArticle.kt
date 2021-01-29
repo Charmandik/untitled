@@ -27,6 +27,8 @@ class FragmentSingleArticle : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeOnPodcasts()
+        viewModel.getArticle(requireArguments().getInt("id"))
+        configureView()
     }
 
     fun observeOnPodcasts() {
@@ -36,5 +38,11 @@ class FragmentSingleArticle : Fragment() {
                 binding.tvArticleBody.text = Html.fromHtml(it.content)
             }
         })
+    }
+
+    fun configureView() {
+        binding.ivBackBtn.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 }
