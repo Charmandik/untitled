@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -12,9 +15,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategoryModel
+import ru.bikbulatov.pureWave.podcasts.ui.FragmentSinglePodcast
 
 
-class PodcastsPickerAdapter(val podcastsCategories: List<PodcastCategoryModel>) :
+class PodcastsPickerAdapter(
+    val podcastsCategories: List<PodcastCategoryModel>,
+    val fragmentManager: FragmentManager
+) :
     RecyclerView.Adapter<PodcastsPickerAdapter.PodcastCategorieHolder>() {
 
 
@@ -53,11 +60,19 @@ class PodcastsPickerAdapter(val podcastsCategories: List<PodcastCategoryModel>) 
             tracksNum = tracksNum.take(14) + "..."
         }
         holder.tvTracksCount.text = tracksNum
+
+        holder.clPodcastRoot.setOnClickListener {
+            fragmentManager.commit {
+                add(R.id.flContainer, FragmentSinglePodcast())
+                addToBackStack(null)
+            }
+        }
     }
 
     inner class PodcastCategorieHolder(view: View) : RecyclerView.ViewHolder(view) {
         val ivCover: ImageView = view.findViewById(R.id.ivCover)
         val tvName: TextView = view.findViewById(R.id.tvName)
         val tvTracksCount: TextView = view.findViewById(R.id.tvTracksCount)
+        val clPodcastRoot: ConstraintLayout = view.findViewById(R.id.clPodcastRoot)
     }
 }

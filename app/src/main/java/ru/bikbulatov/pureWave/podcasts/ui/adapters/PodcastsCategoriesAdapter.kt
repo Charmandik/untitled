@@ -6,20 +6,24 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.bikbulatov.pureWave.R
+import ru.bikbulatov.pureWave.articles.ui.FragmentSingleArticle
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategoryModel
+import ru.bikbulatov.pureWave.podcasts.ui.FragmentSinglePodcast
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
 
 class PodcastsCategoriesAdapter(
     private val podcasts: List<PodcastCategoryModel>,
-    podcastsViewModel: PodcastsViewModel
+    val podcastsViewModel: PodcastsViewModel,
+    val fragmentManager: FragmentManager
 ) :
     RecyclerView.Adapter<PodcastsCategoriesAdapter.PodcastsCategoryViewHolder>() {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PodcastsCategoryViewHolder {
         return PodcastsCategoryViewHolder(
@@ -46,6 +50,13 @@ class PodcastsCategoriesAdapter(
             .centerCrop()
             .transform(CenterCrop(), RoundedCorners(180))
             .into(holder.ivCover)
+
+        holder.clPodcastRoot.setOnClickListener {
+            fragmentManager.commit {
+                add(R.id.flContainer, FragmentSinglePodcast())
+                addToBackStack(null)
+            }
+        }
     }
 
     inner class PodcastsCategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {

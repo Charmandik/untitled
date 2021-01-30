@@ -32,7 +32,7 @@ class FragmentPodcastsCategories : Fragment() {
                 binding.rvPodcasts.layoutManager = GridLayoutManager(requireContext(), 2)
                 //todo Добавить отступы между элементами
                 binding.rvPodcasts.adapter =
-                    PodcastsCategoriesAdapter(it.sortedBy { it.lastBuildDate }, podcastsVM)
+                    PodcastsCategoriesAdapter(it.sortedBy { it.lastBuildDate }, podcastsVM, parentFragmentManager)
             }
         })
     }

@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.bikbulatov.pureWave.databinding.FragmentSinglePodcastBinding
 
-class FragmentPodcasts : Fragment() {
+class FragmentSinglePodcast : Fragment() {
     private lateinit var binding: FragmentSinglePodcastBinding
     private lateinit var viewModel: PodcastsViewModel
 

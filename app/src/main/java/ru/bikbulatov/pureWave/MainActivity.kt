@@ -7,7 +7,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticles
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
-import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcasts
 import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcastsCategories
 
 @AndroidEntryPoint
