@@ -8,6 +8,7 @@ import ru.bikbulatov.pureWave.articles.ui.FragmentArticles
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
 import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcasts
+import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcastsCategories
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_music -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        add(binding.flContainer.id, FragmentPodcasts())
+                        add(binding.flContainer.id, FragmentPodcastsCategories())
                         addToBackStack(null)
                     }
                 }

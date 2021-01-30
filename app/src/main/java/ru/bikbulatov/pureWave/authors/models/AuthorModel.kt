@@ -1,7 +1,7 @@
 package ru.bikbulatov.pureWave.authors.models
 
 import com.google.gson.annotations.SerializedName
-import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategorieModel
+import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategoryModel
 
 class AuthorModel(
     val id: Int,
@@ -10,6 +10,6 @@ class AuthorModel(
     val photo: String,
     @SerializedName("created_on")
     val createdOn: String,
-    val podcasts: List<PodcastCategorieModel>
+    val podcasts: List<PodcastCategoryModel>
 )
 

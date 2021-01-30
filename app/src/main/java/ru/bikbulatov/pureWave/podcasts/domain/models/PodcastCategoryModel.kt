@@ -2,7 +2,7 @@ package ru.bikbulatov.pureWave.podcasts.domain.models
 
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 
-class PodcastCategorieModel(
+class PodcastCategoryModel(
     val id: Int,
     val link: String,
     val language: String,

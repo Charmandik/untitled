@@ -15,7 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
-import ru.bikbulatov.pureWave.podcasts.ui.PodcastsAdapter
+import ru.bikbulatov.pureWave.podcasts.ui.adapters.PodcastsAdapter
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
 
 class FragmentSingleAuthor : Fragment() {

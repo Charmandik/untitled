@@ -1,4 +1,4 @@
-package ru.bikbulatov.pureWave.podcasts.ui
+package ru.bikbulatov.pureWave.podcasts.ui.adapters
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
+import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
 
 class PodcastsAdapter(
     private val podcasts: MutableList<PodcastModel>,
@@ -30,23 +31,25 @@ class PodcastsAdapter(
     }
 
     override fun onBindViewHolder(holder: PodcastsViewHolder, position: Int) {
-        for(podcast in podcasts){
-
-        }
-        holder.tvName.text = podcasts[position].title
-        holder.tvDuration.text = podcasts[position].playtimeString
-        holder.ivBtnPlay.setOnClickListener {
-
-            val mediaPlayer = MediaPlayer().apply {
-                setAudioAttributes(
-                    AudioAttributes.Builder()
-                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                        .setUsage(AudioAttributes.USAGE_MEDIA)
-                        .build()
-                )
-                setDataSource(podcasts[position].file)
-                prepare() // might take long! (for buffering, etc)
-                start()
+        for (i in 0..podcasts[position].tracks.size) {
+            if (i == 0) {
+                holder.tvTitle.text = podcasts[position].category
+                holder.tvTitle.visibility = View.VISIBLE
+            }
+            holder.tvName.text = podcasts[position].tracks[i].title
+            holder.tvDuration.text = podcasts[position].tracks[i].playtimeString
+            holder.ivBtnPlay.setOnClickListener {
+                val mediaPlayer = MediaPlayer().apply {
+                    setAudioAttributes(
+                        AudioAttributes.Builder()
+                            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                            .setUsage(AudioAttributes.USAGE_MEDIA)
+                            .build()
+                    )
+                    setDataSource(podcasts[position].tracks[i].file)
+                    prepare() // might take long! (for buffering, etc)
+                    start()
+                }
             }
         }
     }
@@ -55,6 +58,7 @@ class PodcastsAdapter(
         val ivBtnLike: ImageView = view.findViewById(R.id.ivBtnLike)
         val ivBtnPlay: ImageView = view.findViewById(R.id.ivBtnPlay)
         val tvName: TextView = view.findViewById(R.id.tvName)
+        val tvTitle: TextView = view.findViewById(R.id.tvTitle)
         val tvDuration: TextView = view.findViewById(R.id.tvDuration)
     }
 }

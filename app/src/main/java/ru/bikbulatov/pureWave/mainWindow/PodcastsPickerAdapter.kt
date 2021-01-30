@@ -11,17 +11,17 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import ru.bikbulatov.pureWave.R
-import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategorieModel
+import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategoryModel
 
 
-class PodcastsCategoriesAdapter(val podcastsCategories: List<PodcastCategorieModel>) :
-    RecyclerView.Adapter<PodcastsCategoriesAdapter.PodcastCategorieHolder>() {
+class PodcastsPickerAdapter(val podcastsCategories: List<PodcastCategoryModel>) :
+    RecyclerView.Adapter<PodcastsPickerAdapter.PodcastCategorieHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PodcastCategorieHolder {
         return PodcastCategorieHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_podcast_categorie_preview, parent, false)
+                .inflate(R.layout.item_podcast_picker, parent, false)
         )
     }
 
