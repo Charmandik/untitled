@@ -27,11 +27,14 @@ class PodcastsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return podcasts.size
+        var count: Int = 0
+        for (podcast in podcasts)
+            count = podcast.tracks.size
+        return count
     }
 
     override fun onBindViewHolder(holder: PodcastsViewHolder, position: Int) {
-        for (i in 0..podcasts[position].tracks.size) {
+        for (i in 0 until podcasts[position].tracks.size-1) {
             if (i == 0) {
                 holder.tvTitle.text = podcasts[position].category
                 holder.tvTitle.visibility = View.VISIBLE
