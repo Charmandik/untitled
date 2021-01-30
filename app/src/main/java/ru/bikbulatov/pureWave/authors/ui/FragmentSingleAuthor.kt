@@ -15,8 +15,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
-import ru.bikbulatov.pureWave.podcasts.ui.adapters.PodcastsAdapter
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
+import ru.bikbulatov.pureWave.podcasts.ui.adapters.PodcastsAdapter
 
 class FragmentSingleAuthor : Fragment() {
     private lateinit var binding: FragmentSingleAuthorBinding
@@ -47,6 +47,7 @@ class FragmentSingleAuthor : Fragment() {
                 configureView(it)
                 podcastsViewModel.podcastsAllLoadedSize = it.podcasts.size
                 Log.d("test999", "podcasts size = ${it.podcasts.size}")
+                //todo возможно надо добавить это всё в корутину
                 for (podcast in it.podcasts) {
                     podcastsViewModel.getPodcast(podcast.id)
                     observeOnPodcast()
