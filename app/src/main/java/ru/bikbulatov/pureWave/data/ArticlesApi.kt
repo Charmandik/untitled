@@ -11,6 +11,7 @@ import ru.bikbulatov.pureWave.articles.models.LikeResponse
 interface ArticlesApi {
     @GET("articles")
     suspend fun getArticles(
+        @Header("appKey") appKey: String = BaseApp.instance.getDeviceId(),
         @Header("apikey") apiKey: String = Constants.API_KEY
     ): List<ArticleModel>
 
@@ -18,6 +19,7 @@ interface ArticlesApi {
     @GET("articles/{id}")
     suspend fun getArticle(
         @Header("apikey") apiKey: String = Constants.API_KEY,
+        @Header("appKey") appKey: String = BaseApp.instance.getDeviceId(),
         @Path("id") articleId: Int
     ): ArticleModel
 
