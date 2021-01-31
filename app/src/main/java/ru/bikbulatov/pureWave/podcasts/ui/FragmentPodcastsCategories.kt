@@ -31,6 +31,9 @@ class FragmentPodcastsCategories : Fragment() {
             it?.let {
                 binding.rvPodcasts.layoutManager = GridLayoutManager(requireContext(), 2)
                 //todo Добавить отступы между элементами
+//                if (binding.rvStories.itemDecorationCount == 0)
+//                    binding.rvStories.addItemDecoration(HorizontalMarginItemDecoration(requireContext(), R.dimen.news_item_margin))
+
                 binding.rvPodcasts.adapter =
                     PodcastsCategoriesAdapter(it.sortedBy { it.lastBuildDate }, podcastsVM, parentFragmentManager)
             }

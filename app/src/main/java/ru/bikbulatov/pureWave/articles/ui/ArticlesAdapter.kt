@@ -1,5 +1,6 @@
 package ru.bikbulatov.pureWave.articles.ui
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,11 +44,16 @@ class ArticlesAdapter(
         holder.clArticleRoot.setOnClickListener {
             viewModel.getArticle(articles[position].id)
             fragmentManager.commit {
-                replace(R.id.flContainer, FragmentSingleArticle())
+                add(R.id.flContainer, FragmentSingleArticle().apply {
+                    arguments = Bundle().apply { putInt("id", articles[position].id) }
+                })
+                addToBackStack(null)
             }
         }
         holder.tvLikesCount.text = articles[position].likes.toString()
-        //holder.ivHeartBtn. todo Добавить логику по перекрашиванию цвета статьи
+        holder.ivHeartBtn.setOnClickListener {
+            viewModel.toggleLike(articles[position].id)
+        }
     }
 
     inner class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -5,13 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
 import ru.bikbulatov.pureWave.databinding.FragmentSingleAuthorBinding
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
@@ -46,15 +49,14 @@ class FragmentSingleAuthor : Fragment() {
             it?.let {
                 configureView(it)
                 podcastsViewModel.podcastsAllLoadedSize = it.podcasts.size
-                Log.d("test999", "podcasts size = ${it.podcasts.size}")
-                //todo возможно надо добавить это всё в корутину
                 for (podcast in it.podcasts) {
                     podcastsViewModel.getPodcast(podcast.id)
-                    observeOnPodcast()
                 }
+                observeOnPodcast()
             }
         })
     }
+
 
     fun configureView(authorModel: AuthorModel) {
         binding.authorPreview.tvAuthorName.text = authorModel.name
@@ -66,6 +68,7 @@ class FragmentSingleAuthor : Fragment() {
             .transform(CenterCrop(), RoundedCorners(180))
             .into(binding.authorPreview.ivAuthor)
         binding.ivBackBtn.setOnClickListener {
+            AnimationUtils.loadAnimation(requireContext(), R.anim.btn_click)
             parentFragmentManager.popBackStack()
         }
     }
@@ -76,10 +79,22 @@ class FragmentSingleAuthor : Fragment() {
             Log.d("test999", "podcasts loaded size = ${podcasts.size}")
             if (podcasts.size >= podcastsViewModel.podcastsAllLoadedSize) {
                 Log.d("test999", "started drawing adapter")
-                binding.rvSongs.layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.rvSongs.adapter =
-                    PodcastsAdapter(podcasts, podcastsViewModel)
+                for (podcast in podcasts) {
+                    val tempRecyclerView = RecyclerView(requireContext())
+                    tempRecyclerView.layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    tempRecyclerView.adapter =
+                        PodcastsAdapter(
+                            podcast.tracks.sortedByDescending { it.createdOn },
+                            podcast.title,
+                            podcastsViewModel
+                        )
+                    binding.llSingleAuthorRoot.addView(tempRecyclerView)
+                }
+//                binding.rvSongs.layoutManager =
+//                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+//                binding.rvSongs.adapter =
+//                    PodcastsAdapter(podcasts, podcastsViewModel)
             }
         })
     }
