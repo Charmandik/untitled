@@ -1,5 +1,6 @@
 package ru.bikbulatov.pureWave
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
@@ -7,15 +8,20 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticles
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
+import ru.bikbulatov.pureWave.player.PlayerService
 import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcastsCategories
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    companion object{
+        lateinit var instance : MainActivity
+    }
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        instance = this
         configureBottomNavigation()
         supportFragmentManager.commit {
             setReorderingAllowed(true)
@@ -73,6 +79,16 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    fun startPlayer() {
+        val myService = Intent(this@MainActivity, PlayerService::class.java)
+        startService(myService)
+        bindService(myService)
+    }
+
+    fun setAudioToPlayer(){
+        setDataSource(tracks[position].file)
     }
 
     override fun onBackPressed() {

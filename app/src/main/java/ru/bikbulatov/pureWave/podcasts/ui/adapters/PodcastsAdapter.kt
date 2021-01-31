@@ -1,16 +1,16 @@
 package ru.bikbulatov.pureWave.podcasts.ui.adapters
 
-import android.media.AudioAttributes
-import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ru.bikbulatov.pureWave.MainActivity
 import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.podcasts.domain.models.TrackModel
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
+
 
 class PodcastsAdapter(
     private val tracks: List<TrackModel>,
@@ -38,17 +38,19 @@ class PodcastsAdapter(
         holder.tvName.text = tracks[position].title
         holder.tvDuration.text = tracks[position].playtimeString
         holder.ivBtnPlay.setOnClickListener {
-            val mediaPlayer = MediaPlayer().apply {
-                setAudioAttributes(
-                    AudioAttributes.Builder()
-                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                        .setUsage(AudioAttributes.USAGE_MEDIA)
-                        .build()
-                )
-                setDataSource(tracks[position].file)
-                prepare() // might take long! (for buffering, etc)
-                start()
-            }
+            MainActivity.instance.startPlayer()
+//            val mediaPlayer = MediaPlayer().apply {
+//                setAudioAttributes(
+//                    AudioAttributes.Builder()
+//                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+//                        .setUsage(AudioAttributes.USAGE_MEDIA)
+//                        .build()
+//                )
+//                setDataSource(tracks[position].file)
+//                prepare() // might take long! (for buffering, etc)
+//                start()
+//            }
+
         }
     }
 
