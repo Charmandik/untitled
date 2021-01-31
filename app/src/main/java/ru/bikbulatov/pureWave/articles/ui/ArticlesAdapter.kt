@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.RecyclerView
@@ -51,7 +53,22 @@ class ArticlesAdapter(
             }
         }
         holder.tvLikesCount.text = articles[position].likes.toString()
+        if (articles[position].isLiked)
+            holder.ivHeartBtn.setColorFilter(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.colorPrimary
+                )
+            )
+        else
+            holder.ivHeartBtn.setColorFilter(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.black
+                )
+            )
         holder.ivHeartBtn.setOnClickListener {
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.btn_click)
             viewModel.toggleLike(articles[position].id)
         }
     }
