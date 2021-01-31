@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/bottom_nav_margin"
     android:background="@color/background_articles"
+    android:clickable="true"
+    android:focusable="true"
     android:orientation="vertical"
     android:weightSum="2">
 
