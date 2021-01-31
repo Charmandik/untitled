@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingBottom="64dp">
+        android:paddingBottom="@dimen/bottom_nav_margin">
 
         <ImageView
             android:id="@+id/ivMenu"

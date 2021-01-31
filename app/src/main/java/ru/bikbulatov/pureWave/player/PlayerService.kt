@@ -29,4 +29,10 @@ class PlayerService : Service(), MediaPlayer.OnPreparedListener {
     override fun onPrepared(_mediaPlayer: MediaPlayer?) {
         _mediaPlayer?.start()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+    }
 }

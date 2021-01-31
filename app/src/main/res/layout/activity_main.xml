@@ -14,7 +14,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvMain"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/bottom_nav_margin"
         android:layout_gravity="bottom"
         android:animateLayoutChanges="true"
         android:background="#fff"

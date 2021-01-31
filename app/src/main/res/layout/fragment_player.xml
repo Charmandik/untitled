@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/bottom_nav_margin"
     android:background="#FBBD44">
 
     <androidx.constraintlayout.widget.ConstraintLayout
