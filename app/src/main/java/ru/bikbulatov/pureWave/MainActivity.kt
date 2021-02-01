@@ -1,6 +1,8 @@
 package ru.bikbulatov.pureWave
 
 import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
@@ -36,22 +38,26 @@ class MainActivity : AppCompatActivity() {
             replace(
                 binding.flContainer.id,
                 FragmentPicker()
-            ) //its true position of picker
+            )
         }
         serviceConnection = object : ServiceConnection {
-            override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                Log.d("test123", "onServiceConnected")
-                val binder = service as LocalService.LocalBinder
+            // Called when the connection with the service is established
+            override fun onServiceConnected(className: ComponentName, service: IBinder) {
+                // Because we have bound to an explicit
+                // service that is running in our own process, we can
+                // cast its IBinder to a concrete class and directly access it.
+                val binder = service as LocalService.MyLocalBinder
                 playerService = binder.getService()
                 isBound = true
             }
 
-            override fun onServiceDisconnected(name: ComponentName?) {
-                Log.d("test123", "onServiceDisconnected")
+            // Called when the connection with the service disconnects unexpectedly
+            override fun onServiceDisconnected(className: ComponentName) {
+                Log.e("TAG", "onServiceDisconnected")
                 isBound = false
             }
-
         }
+        startPlayer()
     }
 
     private fun configureBottomNavigation() {
@@ -104,13 +110,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startPlayer() {
-//        val myService = Intent(this@MainActivity, PlayerService::class.java)
-//        startService(myService)
-//        bindService(myService, serviceConnection, BIND_AUTO_CREATE)
+        val intent = Intent(this, LocalService::class.java).also { intent ->
+            bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        }
+
     }
 
-    fun setAudioToPlayer() {
+    fun showTime() {
+        Log.d("test", playerService.getCurrentTime())
+    }
+
+    fun setAudioToPlayer(file: String) {
 //        setDataSource(tracks[position].file)
+        playerService.setDataToPlayer(file)
     }
 
     override fun onBackPressed() {

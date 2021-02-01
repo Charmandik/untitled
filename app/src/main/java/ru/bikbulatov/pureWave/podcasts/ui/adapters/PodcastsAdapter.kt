@@ -27,7 +27,7 @@ class PodcastsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return tracks.size ?: 0
+        return tracks.size
     }
 
     override fun onBindViewHolder(holder: PodcastsViewHolder, position: Int) {
@@ -38,7 +38,9 @@ class PodcastsAdapter(
         holder.tvName.text = tracks[position].title
         holder.tvDuration.text = tracks[position].playtimeString
         holder.ivBtnPlay.setOnClickListener {
-            MainActivity.instance.startPlayer()
+//            MainActivity.instance.startPlayer()
+            MainActivity.instance.showTime()
+            MainActivity.instance.setAudioToPlayer(tracks[position].file)
 //            val mediaPlayer = MediaPlayer().apply {
 //                setAudioAttributes(
 //                    AudioAttributes.Builder()
