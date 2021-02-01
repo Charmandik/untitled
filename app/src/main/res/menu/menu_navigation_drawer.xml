@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_team"
+            android:title="Команда" />
+        <item
+            android:id="@+id/nav_want_to_help"
+            android:title="Хочу помочь" />
+        <item
+            android:id="@+id/nav_contacts"
+            android:title="Контакты" />
+        <item
+            android:id="@+id/nav_vacancies"
+            android:title="Вакансии" />
+        <item
+            android:id="@+id/nav_quality"
+            android:title="Качество вещания" />
+
+        <menu>
+            <item
+                android:id="@+id/nav_quality_low"
+                android:title="Низкое" />
+            <item
+                android:id="@+id/nav_quality_medium"
+                android:title="Среднее" />
+            <item
+                android:id="@+id/nav_quality_high"
+                android:title="Высокое" />
+        </menu>
+
+    </group>
+</menu>

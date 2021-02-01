@@ -1,22 +1,30 @@
 package ru.bikbulatov.pureWave
 
-import android.content.Intent
+import android.content.ComponentName
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticles
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
-import ru.bikbulatov.pureWave.player.PlayerService
+import ru.bikbulatov.pureWave.player.LocalService
 import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcastsCategories
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    companion object{
-        lateinit var instance : MainActivity
+    companion object {
+        lateinit var instance: MainActivity
     }
+
     private lateinit var binding: ActivityMainBinding
+    private lateinit var serviceConnection: ServiceConnection
+    private lateinit var playerService: LocalService
+    private var isBound = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,6 +37,20 @@ class MainActivity : AppCompatActivity() {
                 binding.flContainer.id,
                 FragmentPicker()
             ) //its true position of picker
+        }
+        serviceConnection = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+                Log.d("test123", "onServiceConnected")
+                val binder = service as LocalService.LocalBinder
+                playerService = binder.getService()
+                isBound = true
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {
+                Log.d("test123", "onServiceDisconnected")
+                isBound = false
+            }
+
         }
     }
 
@@ -82,13 +104,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startPlayer() {
-        val myService = Intent(this@MainActivity, PlayerService::class.java)
-        startService(myService)
-        bindService(myService)
+//        val myService = Intent(this@MainActivity, PlayerService::class.java)
+//        startService(myService)
+//        bindService(myService, serviceConnection, BIND_AUTO_CREATE)
     }
 
-    fun setAudioToPlayer(){
-        setDataSource(tracks[position].file)
+    fun setAudioToPlayer() {
+//        setDataSource(tracks[position].file)
     }
 
     override fun onBackPressed() {

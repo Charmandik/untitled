@@ -29,6 +29,7 @@ class ArticlesVM @ViewModelInject constructor(val articlesRepo: ArticlesRepo) : 
     fun toggleLike(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             articlesRepo.toggleLike(id, likeResponse)
+            getArticles()
         }
     }
 
