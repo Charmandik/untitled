@@ -6,42 +6,47 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.os.Binder
 import android.os.IBinder
+import android.util.Log
 import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class LocalService : Service() {
+class LocalService : Service(), MediaPlayer.OnPreparedListener {
     private val myBinder = MyLocalBinder()
-    lateinit var player: MediaPlayer
+    private var player: MediaPlayer? = null
+    var file: String = ""
 
-    /**
-     * When binding to the service, we return an interface to our messenger
-     * for sending messages to the service.
-     */
-    override fun onBind(intent: Intent): IBinder? {
-        Toast.makeText(applicationContext, "binding", Toast.LENGTH_SHORT).show()
-        return myBinder
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return super.onStartCommand(intent, flags, startId)
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        player = MediaPlayer().apply {
+    fun initPlayer() {
+        player?.apply {
+            setOnPreparedListener(this@LocalService)
             setAudioAttributes(
                 AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .build()
             )
-
+            setDataSource(file)
+            prepareAsync()
         }
     }
 
-    fun setDataToPlayer(file: String) {
-        player.prepare() // might take long! (for buffering, etc)
-        player.start()
-        player.setDataSource(file)
+    override fun onBind(intent: Intent): IBinder {
+        Toast.makeText(applicationContext, "binding", Toast.LENGTH_SHORT).show()
+        return myBinder
+    }
 
+    fun setDataToPlayer(_file: String) {
+        file = _file
+        if (player == null) {
+            initPlayer()
+        } else
+            player?.setDataSource(file)
+        Log.d("test", player?.isPlaying.toString())
     }
 
     fun getCurrentTime(): String {
@@ -50,6 +55,15 @@ class LocalService : Service() {
             Locale.US
         )
         return dateformat.format(Date())
+    }
+
+    override fun onPrepared(mp: MediaPlayer?) {
+        player?.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        player?.release()
     }
 
     inner class MyLocalBinder : Binder() {

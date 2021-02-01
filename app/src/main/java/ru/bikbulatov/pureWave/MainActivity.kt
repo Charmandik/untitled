@@ -113,7 +113,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, LocalService::class.java).also { intent ->
             bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
         }
-
     }
 
     fun showTime() {
