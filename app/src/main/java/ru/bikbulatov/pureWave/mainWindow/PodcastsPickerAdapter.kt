@@ -1,5 +1,6 @@
 package ru.bikbulatov.pureWave.mainWindow
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,7 +64,11 @@ class PodcastsPickerAdapter(
 
         holder.clPodcastRoot.setOnClickListener {
             fragmentManager.commit {
-                add(R.id.flContainer, FragmentSinglePodcast())
+                add(R.id.flContainer, FragmentSinglePodcast().apply {
+                    arguments = Bundle().apply {
+                        putInt("id", podcastsCategories[position].id)
+                    }
+                })
                 addToBackStack(null)
             }
         }

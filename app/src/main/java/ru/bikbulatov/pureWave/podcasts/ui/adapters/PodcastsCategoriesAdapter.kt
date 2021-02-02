@@ -1,5 +1,6 @@
 package ru.bikbulatov.pureWave.podcasts.ui.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.bikbulatov.pureWave.R
-import ru.bikbulatov.pureWave.articles.ui.FragmentSingleArticle
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategoryModel
 import ru.bikbulatov.pureWave.podcasts.ui.FragmentSinglePodcast
 import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
@@ -53,7 +53,11 @@ class PodcastsCategoriesAdapter(
 
         holder.clPodcastRoot.setOnClickListener {
             fragmentManager.commit {
-                add(R.id.flContainer, FragmentSinglePodcast())
+                add(R.id.flContainer, FragmentSinglePodcast().apply {
+                    arguments = Bundle().apply {
+                        putInt("id", podcasts[position].id)
+                    }
+                })
                 addToBackStack(null)
             }
         }

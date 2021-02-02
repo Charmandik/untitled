@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import ru.bikbulatov.pureWave.databinding.FragmentSinglePodcastBinding
+import ru.bikbulatov.pureWave.podcasts.ui.adapters.PodcastsAdapter
 
 class FragmentSinglePodcast : Fragment() {
     private lateinit var binding: FragmentSinglePodcastBinding
@@ -25,14 +27,21 @@ class FragmentSinglePodcast : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getPodcasts()
+        viewModel.getPodcast(requireArguments().getInt("id"))
         observeOnPodcasts()
     }
 
     fun observeOnPodcasts() {
-        viewModel.podcastsList.observe(viewLifecycleOwner, Observer {
+        viewModel.singlePodcast.observe(viewLifecycleOwner, Observer {
             it?.let {
-
+                binding.rvSongs.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                binding.rvSongs.adapter =
+                    PodcastsAdapter(
+                        it.tracks.sortedByDescending { it.createdOn },
+                        it.title,
+                        viewModel
+                    )
             }
         })
     }
