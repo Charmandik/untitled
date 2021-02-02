@@ -35,7 +35,7 @@ class FragmentPodcastsCategories : Fragment() {
 //                    binding.rvStories.addItemDecoration(HorizontalMarginItemDecoration(requireContext(), R.dimen.news_item_margin))
                 binding.rvPodcasts.adapter =
                     PodcastsCategoriesAdapter(
-                        it.sortedBy { it.lastBuildDate },
+                        it.sortedBy { it.lastBuildDate }.filter { it.tracksNum > 0 },
                         podcastsVM,
                         parentFragmentManager
                     )

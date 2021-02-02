@@ -91,7 +91,8 @@ class FragmentPicker : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 binding.rvPodcasts.adapter =
                     PodcastsPickerAdapter(
-                        it.sortedBy { it.lastBuildDate }.take(ITEM_PODCASTS_COUNT),
+                        it.sortedBy { it.lastBuildDate }.filter { it.tracksNum > 0 }
+                            .take(ITEM_PODCASTS_COUNT),
                         parentFragmentManager
                     )
             }
