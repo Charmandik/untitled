@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
     android:layout_marginBottom="@dimen/bottom_nav_margin"
     android:background="#FF5555"
+    android:clickable="true"
     android:focusable="true">
 
     <ImageView
@@ -33,10 +33,23 @@
         app:layout_constraintBottom_toBottomOf="@id/vSeparator"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/ivCover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tvAuthors"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="МЫСЛИ ВСЛУХ" />
@@ -45,6 +58,8 @@
             android:id="@+id/tvAuthors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/tvSongsCount"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Александр Тукурев" />
@@ -53,7 +68,9 @@
             android:id="@+id/tvSongsCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="845 выпусков" />
@@ -83,6 +100,8 @@
             android:layout_marginTop="48dp"
             android:text="Выпуски"
             android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

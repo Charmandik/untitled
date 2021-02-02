@@ -3,8 +3,10 @@ package ru.bikbulatov.pureWave.podcasts.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ru.bikbulatov.pureWave.MainActivity
 import ru.bikbulatov.pureWave.R
@@ -15,6 +17,7 @@ import ru.bikbulatov.pureWave.podcasts.ui.PodcastsViewModel
 class PodcastsAdapter(
     private val tracks: List<TrackModel>,
     val podcastTitle: String,
+    val podcastId: Int,
     val podcastsViewModel: PodcastsViewModel
 ) :
     RecyclerView.Adapter<PodcastsAdapter.PodcastsViewHolder>() {
@@ -39,11 +42,31 @@ class PodcastsAdapter(
         holder.tvDuration.text = tracks[position].playtimeString
         holder.ivBtnPlay.setOnClickListener {
 //            MainActivity.instance.setAudioToPlayer(tracks[position].file)
+            AnimationUtils.loadAnimation(holder.ivBtnPlay.context, R.anim.btn_click)
             val trackList: MutableList<String> = mutableListOf()
             for (track in tracks) {
                 trackList.add(track.file)
             }
             MainActivity.instance.setAudioToPlayer(trackList)
+        }
+        if (tracks[position].isLiked)
+            holder.ivBtnLike.setColorFilter(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.colorPrimary
+                )
+            )
+        else
+            holder.ivBtnLike.setColorFilter(
+                ContextCompat.getColor(
+                    holder.itemView.context,
+                    R.color.black
+                )
+            )
+
+        holder.ivBtnLike.setOnClickListener {
+            podcastsViewModel.toggleLike(podcastId, tracks[position].id)
+            AnimationUtils.loadAnimation(holder.ivBtnLike.context, R.anim.btn_click)
         }
     }
 

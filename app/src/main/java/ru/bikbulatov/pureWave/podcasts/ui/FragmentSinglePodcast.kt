@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.bikbulatov.pureWave.databinding.FragmentSinglePodcastBinding
 import ru.bikbulatov.pureWave.podcasts.ui.adapters.PodcastsAdapter
 
@@ -39,9 +42,28 @@ class FragmentSinglePodcast : Fragment() {
                 binding.rvSongs.adapter =
                     PodcastsAdapter(
                         it.tracks.sortedByDescending { it.createdOn },
-                        it.title,
+                        "",
+                        it.id,
                         viewModel
                     )
+                binding.tvTitle.text = it.title
+                var tempString = ""
+                for (authorPosition in it.author.indices) {
+                    if (authorPosition > 0)
+                        tempString += "\n"
+                    tempString += it.author[authorPosition].name
+
+                }
+                binding.tvAuthors.text = tempString
+                binding.tvSongsCount.text = "${it.tracks.size} выпусков"
+
+                Glide
+                    .with(requireContext())
+                    .asBitmap()
+                    .load(it.cover)
+                    .centerCrop()
+                    .transform(CenterCrop(), RoundedCorners(25))
+                    .into(binding.ivCover)
             }
         })
     }

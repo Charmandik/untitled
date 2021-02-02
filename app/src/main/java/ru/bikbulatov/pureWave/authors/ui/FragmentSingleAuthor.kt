@@ -87,6 +87,7 @@ class FragmentSingleAuthor : Fragment() {
                         PodcastsAdapter(
                             podcast.tracks.sortedByDescending { it.createdOn },
                             podcast.title,
+                            podcast.id,
                             podcastsViewModel
                         )
                     binding.llSingleAuthorRoot.addView(tempRecyclerView)

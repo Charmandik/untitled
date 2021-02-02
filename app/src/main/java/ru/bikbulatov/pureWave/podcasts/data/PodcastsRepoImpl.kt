@@ -2,6 +2,7 @@ package ru.bikbulatov.pureWave.podcasts.data
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import ru.bikbulatov.pureWave.articles.models.LikeResponse
 import ru.bikbulatov.pureWave.podcasts.domain.PodcastsRepo
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategoryModel
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
@@ -30,6 +31,25 @@ class PodcastsRepoImpl : PodcastsRepo {
             }
         } catch (e: Exception) {
             Log.d("test123", "getAuthor id error ${e.message}")
+        }
+    }
+
+    override suspend fun toggleLike(
+        podcastId: Int,
+        songId: Int,
+        like: MutableLiveData<LikeResponse>
+    ) {
+        try {
+            val response = NetworkHolder.apiRepository.podcastsApi.toggleLike(
+                podcastId = podcastId,
+                songId = songId
+            )
+            response.let {
+                like.postValue(response)
+                Log.d("test123", "test222")
+            }
+        } catch (e: Exception) {
+            Log.d("test123", "Articles id error ${e.message}")
         }
     }
 }
