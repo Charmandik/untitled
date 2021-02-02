@@ -8,21 +8,17 @@ import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
-import java.text.SimpleDateFormat
 import java.util.*
 
 
-class LocalService : Service(), MediaPlayer.OnPreparedListener {
+class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
     private val myBinder = MyLocalBinder()
     private var player: MediaPlayer? = null
     var file: String = ""
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return super.onStartCommand(intent, flags, startId)
-    }
-
     fun initPlayer() {
-        player?.apply {
+        Log.d("test", "initPlayer")
+        player = MediaPlayer().apply {
             setOnPreparedListener(this@LocalService)
             setAudioAttributes(
                 AudioAttributes.Builder()
@@ -41,23 +37,24 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener {
     }
 
     fun setDataToPlayer(_file: String) {
+        Log.d("test", "setDataToPlayer")
         file = _file
-        if (player == null) {
+        if (player == null)
             initPlayer()
-        } else
+        else {
+            player?.reset()
             player?.setDataSource(file)
+            player?.prepareAsync()
+        }
         Log.d("test", player?.isPlaying.toString())
     }
 
-    fun getCurrentTime(): String {
-        val dateformat = SimpleDateFormat(
-            "HH:mm:ss MM/dd/yyyy",
-            Locale.US
-        )
-        return dateformat.format(Date())
+    fun pausePlayer() {
+        player?.pause()
     }
 
     override fun onPrepared(mp: MediaPlayer?) {
+        Log.d("test", "playerPrepared")
         player?.start()
     }
 
@@ -71,4 +68,29 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener {
             return this@LocalService
         }
     }
+
+    override fun onError(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
+        when (what) {
+            MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK -> Log.d(
+                "MediaPlayer Error",
+                "MEDIA ERROR NOT VALID FOR PROGRESSIVE PLAYBACK $extra"
+            )
+            MediaPlayer.MEDIA_ERROR_SERVER_DIED -> Log.d(
+                "MediaPlayer Error",
+                "MEDIA ERROR SERVER DIED $extra"
+            )
+            MediaPlayer.MEDIA_ERROR_UNKNOWN -> Log.d(
+                "MediaPlayer Error",
+                "MEDIA ERROR UNKNOWN $extra"
+            )
+            else ->
+                Log.d(
+                    "MediaPlayer Error",
+                    "MEDIA ERROR ELSE"
+                )
+        }
+        return false
+    }
+
+
 }

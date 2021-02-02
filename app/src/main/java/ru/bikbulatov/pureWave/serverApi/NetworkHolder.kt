@@ -1,4 +1,4 @@
-package ru.bikbulatov.pureWave.data
+package ru.bikbulatov.pureWave.serverApi
 
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient

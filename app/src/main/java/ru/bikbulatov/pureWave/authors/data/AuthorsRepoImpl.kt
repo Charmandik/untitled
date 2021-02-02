@@ -3,7 +3,7 @@ package ru.bikbulatov.pureWave.authors.data
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import ru.bikbulatov.pureWave.authors.models.AuthorModel
-import ru.bikbulatov.pureWave.data.NetworkHolder
+import ru.bikbulatov.pureWave.serverApi.NetworkHolder
 
 
 class AuthorsRepoImpl : AuthorsRepo {
