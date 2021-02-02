@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import ru.bikbulatov.pureWave.articles.models.ArticleModel
 import ru.bikbulatov.pureWave.articles.models.LikeResponse
-import ru.bikbulatov.pureWave.data.NetworkHolder
+import ru.bikbulatov.pureWave.serverApi.NetworkHolder
 
 class ArticlesRepoImpl : ArticlesRepo {
     override suspend fun getArticles(articles: MutableLiveData<List<ArticleModel>>) {

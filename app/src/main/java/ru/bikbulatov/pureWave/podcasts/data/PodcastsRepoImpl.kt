@@ -2,10 +2,10 @@ package ru.bikbulatov.pureWave.podcasts.data
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import ru.bikbulatov.pureWave.data.NetworkHolder
-import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategoryModel
 import ru.bikbulatov.pureWave.podcasts.domain.PodcastsRepo
+import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastCategoryModel
 import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
+import ru.bikbulatov.pureWave.serverApi.NetworkHolder
 
 
 class PodcastsRepoImpl : PodcastsRepo {

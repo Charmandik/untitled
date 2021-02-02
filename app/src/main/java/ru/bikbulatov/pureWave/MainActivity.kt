@@ -115,13 +115,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showTime() {
-        Log.d("test", playerService.getCurrentTime())
+    fun setAudioToPlayer(track: String) {
+        playerService.setDataToPlayer(track)
     }
 
-    fun setAudioToPlayer(file: String) {
-//        setDataSource(tracks[position].file)
-        playerService.setDataToPlayer(file)
+    fun setAudioToPlayer(trackList: List<String>) {
+        playerService.setDataToPlayer(trackList)
     }
 
     override fun onBackPressed() {

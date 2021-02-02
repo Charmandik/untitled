@@ -1,4 +1,4 @@
-package ru.bikbulatov.pureWave.data
+package ru.bikbulatov.pureWave.serverApi
 
 import retrofit2.http.GET
 import retrofit2.http.Header

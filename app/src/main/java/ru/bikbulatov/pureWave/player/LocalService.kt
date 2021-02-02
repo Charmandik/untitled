@@ -8,29 +8,29 @@ import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
-import java.text.SimpleDateFormat
 import java.util.*
 
 
-class LocalService : Service(), MediaPlayer.OnPreparedListener {
+class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
+    MediaPlayer.OnCompletionListener, MediaPlayer.OnSeekCompleteListener {
     private val myBinder = MyLocalBinder()
     private var player: MediaPlayer? = null
-    var file: String = ""
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return super.onStartCommand(intent, flags, startId)
-    }
+    var trackList: MutableList<String> = mutableListOf()
+    var currentPosition = 0
 
     fun initPlayer() {
-        player?.apply {
+        Log.d("test", "initPlayer")
+        player = MediaPlayer().apply {
             setOnPreparedListener(this@LocalService)
+            setOnErrorListener(this@LocalService)
+            setOnCompletionListener(this@LocalService)
             setAudioAttributes(
                 AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .build()
             )
-            setDataSource(file)
+            setDataSource(trackList.first())
             prepareAsync()
         }
     }
@@ -41,23 +41,36 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener {
     }
 
     fun setDataToPlayer(_file: String) {
-        file = _file
-        if (player == null) {
+        Log.d("test", "setDataToPlayer")
+        if (player == null)
             initPlayer()
-        } else
-            player?.setDataSource(file)
+        else {
+            player?.reset()
+            player?.setDataSource(_file)
+            player?.prepareAsync()
+        }
         Log.d("test", player?.isPlaying.toString())
     }
 
-    fun getCurrentTime(): String {
-        val dateformat = SimpleDateFormat(
-            "HH:mm:ss MM/dd/yyyy",
-            Locale.US
-        )
-        return dateformat.format(Date())
+    fun setDataToPlayer(_trackList: List<String>) {
+        Log.d("test", "trackList setDataToPlayer")
+        trackList = _trackList as MutableList<String>
+        if (player == null)
+            initPlayer()
+        else {
+            player?.reset()
+            player?.setDataSource(trackList.first())
+            player?.prepareAsync()
+        }
+        Log.d("test", player?.isPlaying.toString())
+    }
+
+    fun pausePlayer() {
+        player?.pause()
     }
 
     override fun onPrepared(mp: MediaPlayer?) {
+        Log.d("test", "playerPrepared")
         player?.start()
     }
 
@@ -70,5 +83,44 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener {
         fun getService(): LocalService {
             return this@LocalService
         }
+    }
+
+    override fun onError(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
+        when (what) {
+            MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK -> Log.d(
+                "MediaPlayer Error",
+                "MEDIA ERROR NOT VALID FOR PROGRESSIVE PLAYBACK $extra"
+            )
+            MediaPlayer.MEDIA_ERROR_SERVER_DIED -> Log.d(
+                "MediaPlayer Error",
+                "MEDIA ERROR SERVER DIED $extra"
+            )
+            MediaPlayer.MEDIA_ERROR_UNKNOWN -> Log.d(
+                "MediaPlayer Error",
+                "MEDIA ERROR UNKNOWN $extra"
+            )
+            else ->
+                Log.d(
+                    "MediaPlayer Error",
+                    "MEDIA ERROR ELSE"
+                )
+        }
+        return false
+    }
+
+    override fun onCompletion(mp: MediaPlayer?) {
+        if (currentPosition + 1 < trackList.size) {
+            currentPosition += 1
+            setDataToPlayer(trackList[currentPosition])
+        }
+        Log.d("test", "onCompletion")
+    }
+
+    override fun onSeekComplete(mp: MediaPlayer?) {
+        Log.d("test", "onSeekComplete")
+        Log.d("test", "onSeekComplete")
+        Log.d("test", "onSeekComplete")
+        Log.d("test", "onSeekComplete")
+        Log.d("test", "onSeekComplete")
     }
 }
