@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.databinding.FragmentProgramsCategoriesBinding
 import ru.bikbulatov.pureWave.podcasts.ui.adapters.PodcastsCategoriesAdapter
 
@@ -31,6 +33,11 @@ class FragmentPodcastsCategories : Fragment() {
             it?.let {
                 binding.rvPodcasts.layoutManager = GridLayoutManager(requireContext(), 2)
                 //todo Добавить отступы между элементами
+                binding.rvPodcasts.addItemDecoration(HorizontalMarginItemDecoration(
+                    requireContext(),
+                    R.dimen.podcasts_horizontal_margin
+                ))
+
 //                if (binding.rvStories.itemDecorationCount == 0)
 //                    binding.rvStories.addItemDecoration(HorizontalMarginItemDecoration(requireContext(), R.dimen.news_item_margin))
                 binding.rvPodcasts.adapter =
@@ -39,6 +46,7 @@ class FragmentPodcastsCategories : Fragment() {
                         podcastsVM,
                         parentFragmentManager
                     )
+
             }
         })
     }
