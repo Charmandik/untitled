@@ -38,21 +38,12 @@ class PodcastsAdapter(
         holder.tvName.text = tracks[position].title
         holder.tvDuration.text = tracks[position].playtimeString
         holder.ivBtnPlay.setOnClickListener {
-//            MainActivity.instance.startPlayer()
-            MainActivity.instance.showTime()
-            MainActivity.instance.setAudioToPlayer(tracks[position].file)
-//            val mediaPlayer = MediaPlayer().apply {
-//                setAudioAttributes(
-//                    AudioAttributes.Builder()
-//                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-//                        .setUsage(AudioAttributes.USAGE_MEDIA)
-//                        .build()
-//                )
-//                setDataSource(tracks[position].file)
-//                prepare() // might take long! (for buffering, etc)
-//                start()
-//            }
-
+//            MainActivity.instance.setAudioToPlayer(tracks[position].file)
+            val trackList: MutableList<String> = mutableListOf()
+            for (track in tracks) {
+                trackList.add(track.file)
+            }
+            MainActivity.instance.setAudioToPlayer(trackList)
         }
     }
 

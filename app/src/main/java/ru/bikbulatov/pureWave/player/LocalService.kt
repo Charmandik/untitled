@@ -11,22 +11,26 @@ import android.widget.Toast
 import java.util.*
 
 
-class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
+class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
+    MediaPlayer.OnCompletionListener, MediaPlayer.OnSeekCompleteListener {
     private val myBinder = MyLocalBinder()
     private var player: MediaPlayer? = null
-    var file: String = ""
+    var trackList: MutableList<String> = mutableListOf()
+    var currentPosition = 0
 
     fun initPlayer() {
         Log.d("test", "initPlayer")
         player = MediaPlayer().apply {
             setOnPreparedListener(this@LocalService)
+            setOnErrorListener(this@LocalService)
+            setOnCompletionListener(this@LocalService)
             setAudioAttributes(
                 AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .build()
             )
-            setDataSource(file)
+            setDataSource(trackList.first())
             prepareAsync()
         }
     }
@@ -38,12 +42,24 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnEr
 
     fun setDataToPlayer(_file: String) {
         Log.d("test", "setDataToPlayer")
-        file = _file
         if (player == null)
             initPlayer()
         else {
             player?.reset()
-            player?.setDataSource(file)
+            player?.setDataSource(_file)
+            player?.prepareAsync()
+        }
+        Log.d("test", player?.isPlaying.toString())
+    }
+
+    fun setDataToPlayer(_trackList: List<String>) {
+        Log.d("test", "trackList setDataToPlayer")
+        trackList = _trackList as MutableList<String>
+        if (player == null)
+            initPlayer()
+        else {
+            player?.reset()
+            player?.setDataSource(trackList.first())
             player?.prepareAsync()
         }
         Log.d("test", player?.isPlaying.toString())
@@ -92,5 +108,19 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnEr
         return false
     }
 
+    override fun onCompletion(mp: MediaPlayer?) {
+        if (currentPosition + 1 < trackList.size) {
+            currentPosition += 1
+            setDataToPlayer(trackList[currentPosition])
+        }
+        Log.d("test", "onCompletion")
+    }
 
+    override fun onSeekComplete(mp: MediaPlayer?) {
+        Log.d("test", "onSeekComplete")
+        Log.d("test", "onSeekComplete")
+        Log.d("test", "onSeekComplete")
+        Log.d("test", "onSeekComplete")
+        Log.d("test", "onSeekComplete")
+    }
 }
