@@ -8,11 +8,13 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.commit
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticles
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
+import ru.bikbulatov.pureWave.databinding.ActivityMainWithDrawerBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
 import ru.bikbulatov.pureWave.player.LocalService
 import ru.bikbulatov.pureWave.podcasts.domain.models.TrackModel
@@ -25,14 +27,14 @@ class MainActivity : AppCompatActivity() {
         lateinit var instance: MainActivity
     }
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainWithDrawerBinding
     private lateinit var serviceConnection: ServiceConnection
     private lateinit var playerService: LocalService
     private var isBound = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainWithDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         instance = this
         configureBottomNavigation()
@@ -61,6 +63,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         startPlayer()
+        binding.drawerLayout.openDrawer(GravityCompat.START)
     }
 
     private fun configureBottomNavigation() {
