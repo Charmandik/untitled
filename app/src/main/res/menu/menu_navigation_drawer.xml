@@ -30,7 +30,9 @@
             <item
                 android:id="@+id/nav_quality_high"
                 android:title="Высокое" />
+            <include layout="@layout/item_author_preview" />
         </menu>
-
+        <include layout="@layout/item_author_preview" />
     </group>
+    <include layout="@layout/item_author_preview" />
 </menu>

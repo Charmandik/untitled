@@ -13,7 +13,6 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticles
-import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 import ru.bikbulatov.pureWave.databinding.ActivityMainWithDrawerBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
 import ru.bikbulatov.pureWave.player.LocalService
@@ -112,6 +111,37 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+    }
+
+    private fun configureDrawerMenu() {
+        binding.tvMenuTeam.setOnClickListener{
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(binding.flContainer.id, FragmentPodcastsCategories())
+                addToBackStack(null)
+            }
+        }
+        binding.tvMenuTeam.setOnClickListener{
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(binding.flContainer.id, FragmentPodcastsCategories())
+                addToBackStack(null)
+            }
+        }
+        binding.tvMenuTeam.setOnClickListener{
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(binding.flContainer.id, FragmentPodcastsCategories())
+                addToBackStack(null)
+            }
+        }
+        binding.tvMenuTeam.setOnClickListener{
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(binding.flContainer.id, FragmentPodcastsCategories())
+                addToBackStack(null)
+            }
         }
     }
 
