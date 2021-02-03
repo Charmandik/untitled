@@ -8,6 +8,8 @@ import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
+import ru.bikbulatov.pureWave.podcasts.domain.models.TrackModel
 import java.util.*
 
 
@@ -15,8 +17,11 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnEr
     MediaPlayer.OnCompletionListener, MediaPlayer.OnSeekCompleteListener {
     private val myBinder = MyLocalBinder()
     private var player: MediaPlayer? = null
-    var trackList: MutableList<String> = mutableListOf()
+    var trackList: MutableList<TrackModel> = mutableListOf()
+    var currentTrack: MutableLiveData<TrackModel> = MutableLiveData()
     var currentPosition = 0
+    var currentVolume = 0.5F
+
 
     fun initPlayer() {
         Log.d("test", "initPlayer")
@@ -30,7 +35,7 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnEr
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .build()
             )
-            setDataSource(trackList.first())
+            setDataSource(trackList.first().file)
             prepareAsync()
         }
     }
@@ -40,26 +45,26 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnEr
         return myBinder
     }
 
-    fun setDataToPlayer(_file: String) {
+    fun setDataToPlayer(_track: TrackModel) {
         Log.d("test", "setDataToPlayer")
         if (player == null)
             initPlayer()
         else {
             player?.reset()
-            player?.setDataSource(_file)
+            player?.setDataSource(_track.file)
             player?.prepareAsync()
         }
         Log.d("test", player?.isPlaying.toString())
     }
 
-    fun setDataToPlayer(_trackList: List<String>) {
+    fun setDataToPlayer(_trackList: List<TrackModel>) {
         Log.d("test", "trackList setDataToPlayer")
-        trackList = _trackList as MutableList<String>
+        trackList = _trackList as MutableList<TrackModel>
         if (player == null)
             initPlayer()
         else {
             player?.reset()
-            player?.setDataSource(trackList.first())
+            player?.setDataSource(trackList.first().file)
             player?.prepareAsync()
         }
         Log.d("test", player?.isPlaying.toString())
@@ -69,14 +74,35 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnEr
         player?.pause()
     }
 
+    fun turnUpVolume() {
+        if (currentVolume < 1F)
+            currentVolume += 0.1F
+        player?.setVolume(currentVolume, currentVolume)
+
+    }
+
+    fun turnDownVolume() {
+        if (currentVolume > 0F)
+            currentVolume -= 0.1F
+        player?.setVolume(currentVolume, currentVolume)
+    }
+
+    fun getCurrentTrack(): TrackModel? {
+        return if (player?.isPlaying == true)
+            trackList[currentPosition]
+        else null
+    }
+
     override fun onPrepared(mp: MediaPlayer?) {
         Log.d("test", "playerPrepared")
         player?.start()
+        currentTrack.value = trackList[currentPosition]
     }
 
     override fun onDestroy() {
         super.onDestroy()
         player?.release()
+        currentTrack.value = null
     }
 
     inner class MyLocalBinder : Binder() {
@@ -112,15 +138,12 @@ class LocalService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnEr
         if (currentPosition + 1 < trackList.size) {
             currentPosition += 1
             setDataToPlayer(trackList[currentPosition])
+            currentTrack.value = trackList[currentPosition]
         }
         Log.d("test", "onCompletion")
     }
 
     override fun onSeekComplete(mp: MediaPlayer?) {
-        Log.d("test", "onSeekComplete")
-        Log.d("test", "onSeekComplete")
-        Log.d("test", "onSeekComplete")
-        Log.d("test", "onSeekComplete")
         Log.d("test", "onSeekComplete")
     }
 }

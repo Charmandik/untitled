@@ -30,7 +30,8 @@ class FragmentSinglePodcast : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getPodcast(requireArguments().getInt("id"))
+        viewModel.singlePodcastId = requireArguments().getInt("id")
+        viewModel.getPodcast(viewModel.singlePodcastId)
         observeOnPodcasts()
     }
 

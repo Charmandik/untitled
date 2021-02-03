@@ -13,6 +13,7 @@ import ru.bikbulatov.pureWave.podcasts.domain.models.PodcastModel
 
 class PodcastsViewModel @ViewModelInject constructor(val podcastsRepo: PodcastsRepo) : ViewModel() {
     var podcastsAllLoadedSize: Int = 0
+    var singlePodcastId: Int = 0
 
     val podcastsList: MutableLiveData<List<PodcastCategoryModel>> = MutableLiveData()
     fun getPodcasts() {
@@ -35,7 +36,7 @@ class PodcastsViewModel @ViewModelInject constructor(val podcastsRepo: PodcastsR
     ) {
         CoroutineScope(Dispatchers.IO).launch {
             podcastsRepo.toggleLike(podcastId, songId, likeResponse)
-            getPodcasts()
+            getPodcast(singlePodcastId)
         }
     }
 }

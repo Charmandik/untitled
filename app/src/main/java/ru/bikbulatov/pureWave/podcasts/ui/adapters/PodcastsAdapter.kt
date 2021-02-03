@@ -43,11 +43,8 @@ class PodcastsAdapter(
         holder.ivBtnPlay.setOnClickListener {
 //            MainActivity.instance.setAudioToPlayer(tracks[position].file)
             AnimationUtils.loadAnimation(holder.ivBtnPlay.context, R.anim.btn_click)
-            val trackList: MutableList<String> = mutableListOf()
-            for (track in tracks) {
-                trackList.add(track.file)
-            }
-            MainActivity.instance.setAudioToPlayer(trackList)
+            //todo продумать логику добавления списка треков - не начиная с первого, а начиная с выбранного
+            MainActivity.instance.setAudioToPlayer(tracks)
         }
         if (tracks[position].isLiked)
             holder.ivBtnLike.setColorFilter(

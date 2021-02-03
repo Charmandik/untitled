@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:clickable="true"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/bottom_nav_margin"
     android:background="#FBBD44"
+    android:clickable="true"
     android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,13 +55,22 @@
         android:background="@drawable/decoration_white_top_rounded"
         app:layout_constraintTop_toBottomOf="@id/clHeader">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSongs"
-            android:layout_width="match_parent"
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/rvSongs"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            tools:itemCount="1"-->
+        <!--            tools:listitem="@layout/item_composition" />-->
+
+        <include
+            android:id="@+id/composition"
+            layout="@layout/item_composition"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:itemCount="1"
-            tools:listitem="@layout/item_composition" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clSettings"
@@ -72,7 +80,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/rvSongs">
+            app:layout_constraintTop_toBottomOf="@id/composition">
 
             <ImageView
                 android:id="@+id/ivTurnDownVolume"
@@ -112,6 +120,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
+            android:id="@+id/ivBtnPlay"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginTop="32dp"

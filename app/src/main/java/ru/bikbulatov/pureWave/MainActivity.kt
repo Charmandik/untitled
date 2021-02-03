@@ -9,12 +9,15 @@ import android.os.IBinder
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
+import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.AndroidEntryPoint
 import ru.bikbulatov.pureWave.articles.ui.FragmentArticles
 import ru.bikbulatov.pureWave.databinding.ActivityMainBinding
 import ru.bikbulatov.pureWave.mainWindow.FragmentPicker
 import ru.bikbulatov.pureWave.player.LocalService
+import ru.bikbulatov.pureWave.podcasts.domain.models.TrackModel
 import ru.bikbulatov.pureWave.podcasts.ui.FragmentPodcastsCategories
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -115,12 +118,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setAudioToPlayer(track: String) {
+    fun setAudioToPlayer(track: TrackModel) {
         playerService.setDataToPlayer(track)
     }
 
-    fun setAudioToPlayer(trackList: List<String>) {
+    fun setAudioToPlayer(trackList: List<TrackModel>) {
         playerService.setDataToPlayer(trackList)
+    }
+
+    fun getCurrentTrack(): MutableLiveData<TrackModel> {
+        return playerService.currentTrack
+    }
+
+    fun pausePlayer() {
+        playerService.pausePlayer()
+    }
+
+    fun turnDownVolume() {
+        playerService.turnDownVolume()
+    }
+
+    fun turnUpVolume() {
+        playerService.turnUpVolume()
     }
 
     override fun onBackPressed() {
