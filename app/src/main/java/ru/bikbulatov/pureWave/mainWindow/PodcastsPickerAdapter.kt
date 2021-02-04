@@ -60,7 +60,7 @@ class PodcastsPickerAdapter(
         if (tracksNum.length > 17) {
             tracksNum = tracksNum.take(14) + "..."
         }
-        holder.tvTracksCount.text = tracksNum
+        holder.tvTracksCount.text = tracksNum + " выпусков"
 
         holder.clPodcastRoot.setOnClickListener {
             fragmentManager.commit {

@@ -5,9 +5,11 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import ru.bikbulatov.pureWave.R
 import ru.bikbulatov.pureWave.databinding.FragmentSingleArticleBinding
 
 class FragmentSingleArticle : Fragment() {
@@ -29,6 +31,10 @@ class FragmentSingleArticle : Fragment() {
         observeOnPodcasts()
         viewModel.getArticle(requireArguments().getInt("id"))
         configureView()
+        binding.ivHeartBtn.setOnClickListener {
+            viewModel.toggleLike(requireArguments().getInt("id"))
+            viewModel.getArticle(requireArguments().getInt("id"))
+        }
     }
 
     fun observeOnPodcasts() {
@@ -36,6 +42,21 @@ class FragmentSingleArticle : Fragment() {
             it?.let {
                 binding.tvTitle.text = it.title
                 binding.tvArticleBody.text = Html.fromHtml(it.content)
+                if (it.isLiked) {
+                    binding.ivHeartBtn.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.colorPrimary
+                        )
+                    )
+
+                } else
+                    binding.ivHeartBtn.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.black
+                        )
+                    )
             }
         })
     }

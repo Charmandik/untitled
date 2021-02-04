@@ -37,7 +37,7 @@ class AuthorsAdapter(
     override fun onBindViewHolder(holder: AuthorViewHolder, position: Int) {
         var authorName = authors[position].name
         if (authorName.length > 19) {
-            authorName = authorName.take(14) + "..."
+            authorName = authorName.take(16) + "..."
         }
         holder.tvAuthorName.text = authorName
         if (isNeedSpan)
